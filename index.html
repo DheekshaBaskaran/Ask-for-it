@@ -1,0 +1,1560 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ask For It</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%233b2a20'/%3E%3Ctext x='32' y='45' text-anchor='middle' font-family='Georgia,serif' font-style='italic' font-size='38' fill='%23f6ede1'%3Ea%3C/text%3E%3C/svg%3E">
+<meta name="theme-color" content="#3b2a20">
+<meta property="og:title" content="Ask For It: a negotiation coach for women">
+<meta property="og:description" content="See what not asking costs, build your counter-offer and script, and rehearse with a realistic hiring manager.">
+<meta name="description" content="A research-backed negotiation coach for women: know your worth, find your words, rehearse with a realistic hiring manager, and walk in ready.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+/* ============ Design tokens ============ */
+:root {
+  /* Palette: light browns, caramel accent, espresso for key moments */
+  --bg: #eadbc8; --surface: #f6ede1; --surface-2: #e7d6c0; --field: #fbf6ef;
+  --sand: #d9c3a5; --sand-soft: #e7d6c0;
+  --text: #3b2a20; --ink: #3b2a20; --espresso: #3b2a20; --ink-text: #f6ede1;
+  --muted: #6b5848; --faint: #8a7462; --border: #dcc8b2;
+  --accent: #8a5a3b; --accent-soft: #ebd9c6;
+  --on-dark: #f6ede1; --on-dark-muted: #cdb79f;
+  --sage: #dfe3d0; --sage-ink: #5f7350; --butter: #f1e2c0; --butter-ink: #8a6a24;
+  /* Legacy names mapped into the brown family */
+  --blush: var(--sand-soft); --blush-ink: var(--accent); --lavender: var(--sand-soft); --hedge: var(--accent);
+  /* Spacing scale */
+  --s1: 4px; --s2: 8px; --s3: 12px; --s4: 16px; --s5: 24px; --s6: 32px; --s7: 48px; --s8: 64px;
+  /* Radii */
+  --r-lg: 24px; --r-md: 16px; --r-sm: 12px; --radius: var(--r-lg);
+  /* Widths */
+  --w-wide: 1040px; --w-form: 600px;
+  /* Type */
+  --fs-sm: .875rem; --fs-xs: .8125rem; --fs-eyebrow: .72rem;
+  color-scheme: light;
+}
+
+/* ============ Base ============ */
+* { box-sizing: border-box; }
+html, body { margin: 0; }
+body { background: var(--bg); color: var(--text); font: 16px/1.6 Inter, system-ui, -apple-system, sans-serif; -webkit-font-smoothing: antialiased; overflow-x: hidden; min-height: 100vh; }
+h1, h2, h3.serif, .serif { font-family: "Instrument Serif", Georgia, serif; font-weight: 400; letter-spacing: -0.01em; }
+h1 { font-size: clamp(3rem, 9vw, 5.6rem); line-height: .98; margin: 0 0 var(--s5); }
+h2 { font-size: clamp(2.2rem, 5vw, 3.2rem); line-height: 1.05; margin: 0 0 var(--s3); }
+h3.serif { font-size: 1.5rem; line-height: 1.2; margin: 0 0 var(--s4); }
+h1 em, h2 em { color: var(--accent); font-style: italic; }
+h1, h2, h3, .big-number { text-wrap: balance; }
+p, .lede, .bubble, .hint { text-wrap: pretty; }
+p { margin: 0 0 var(--s4); }
+a { color: inherit; }
+.wrap { max-width: calc(var(--w-wide) + 2 * var(--s4)); margin: 0 auto; padding: 0 var(--s4); }
+.narrow { max-width: 640px; margin-left: auto; margin-right: auto; }
+.center { text-align: center; }
+.lede { color: var(--muted); font-size: 1.0625rem; max-width: 46ch; margin: 0 auto; }
+.fine { font-size: var(--fs-xs); color: var(--muted); }
+.sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+[hidden] { display: none !important; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+
+/* One eyebrow style for every small uppercase label */
+.eyebrow, .kicker, .plan-card .label, .recap .label2, .try-card .k, .phrased .k-lbl, .fb-item b, .cue b, .sound h4, .plan-nums span, .milestones span {
+  display: block; font-family: Inter, sans-serif; font-size: var(--fs-eyebrow); font-weight: 500; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); line-height: 1.4;
+}
+
+/* ============ Header & progress ============ */
+header.top { position: sticky; top: 0; z-index: 10; background: var(--surface); border-bottom: 1px solid var(--border); }
+header.top .wrap { display: flex; align-items: center; gap: var(--s4); height: 68px; }
+.brand { font-family: "Instrument Serif", serif; font-size: 1.75rem; margin-right: auto; white-space: nowrap; background: none; border: 0; padding: 0; color: var(--text); cursor: pointer; }
+.brand em { color: var(--accent); }
+.progress { display: flex; gap: var(--s1); align-items: center; }
+.progress button { background: transparent; border: 0; height: 34px; padding: 0 var(--s3); border-radius: 999px; font-size: var(--fs-xs); color: var(--muted); display: inline-flex; gap: var(--s2); align-items: center; }
+.progress button .d { width: 8px; height: 8px; border-radius: 50%; background: var(--border); transition: background .3s, transform .3s; }
+.progress button.done .d { background: var(--muted); }
+.progress button[aria-current="step"] { color: var(--text); background: var(--bg); }
+.progress button[aria-current="step"] .d { background: var(--accent); transform: scale(1.2); }
+@media (max-width: 760px) { .progress .lbl { display: none; } .progress button { padding: 0 var(--s2); } }
+
+/* ============ Steps & layout ============ */
+.step { display: none; padding: var(--s8) 0 var(--s5); animation: fade .4s ease; }
+.step.active { display: block; }
+@keyframes fade { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+.kicker { display: inline-flex; align-items: center; gap: var(--s2); margin-bottom: var(--s3); }
+.kicker .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--accent); }
+.step-head { margin-bottom: var(--s6); }
+.sub-progress { display: flex; gap: 6px; justify-content: center; margin: calc(-1 * var(--s3)) 0 var(--s6); }
+.sub-progress span { width: 28px; height: 4px; border-radius: 999px; background: var(--border); transition: background .3s; }
+.sub-progress span.on { background: var(--accent); }
+.single, #b-out { max-width: var(--w-form) !important; margin-left: auto; margin-right: auto; }
+.stepnav { display: flex; justify-content: space-between; align-items: center; gap: var(--s3); max-width: calc(var(--w-wide) + 2 * var(--s4)); margin: 0 auto; padding: var(--s2) var(--s4) var(--s8); }
+body[data-width="form"] .stepnav { max-width: calc(var(--w-form) + 2 * var(--s4)); }
+.stepnav .spacer { flex: 1; }
+.grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: var(--s5); align-items: start; }
+@media (max-width: 820px) { .grid-2 { grid-template-columns: 1fr; } }
+
+/* ============ Landing ============ */
+#intro { display: none; }
+#intro.active { display: block; }
+.land-hero { position: relative; overflow: hidden; min-height: calc(100vh - 68px); min-height: calc(100svh - 68px); display: flex; align-items: center; justify-content: center; padding: var(--s7) 0; }
+.land-hero > .wrap { width: 100%; }
+.hero-grid { display: grid; grid-template-columns: 1.1fr .9fr; gap: var(--s8); align-items: center; }
+.hero-copy .lede { margin: 0; max-width: 42ch; }
+.hero-copy .intro-actions { justify-content: flex-start; }
+.hero-art { display: flex; justify-content: flex-end; }
+.arch-frame { width: 100%; max-width: 420px; aspect-ratio: 4 / 5; background: var(--sand); border-radius: 999px 999px var(--r-lg) var(--r-lg); display: flex; align-items: flex-end; padding: var(--s6); }
+.mock { width: 100%; display: flex; flex-direction: column; gap: var(--s3); }
+.mock-who { display: flex; align-items: center; gap: var(--s2); font-size: var(--fs-xs); color: var(--espresso); font-weight: 500; }
+.mock-av { width: 24px; height: 24px; border-radius: 50%; background: var(--espresso); opacity: .85; }
+.mock-bubble { padding: var(--s3) var(--s4); border-radius: var(--r-md); font-size: var(--fs-sm); line-height: 1.5; max-width: 88%; }
+.mock-bubble b { font-weight: 600; }
+.mock-bubble.mgr { background: var(--field); align-self: flex-start; border-bottom-left-radius: 4px; }
+.mock-bubble.me { background: var(--espresso); color: var(--on-dark); align-self: flex-end; border-bottom-right-radius: 4px; }
+.mock-tag { align-self: flex-end; display: inline-flex; align-items: center; gap: 6px; height: 26px; padding: 0 var(--s3); border-radius: 999px; background: var(--sage); color: var(--sage-ink); font-size: var(--fs-eyebrow); font-weight: 600; }
+.mock-tag span { width: 6px; height: 6px; border-radius: 50%; background: var(--sage-ink); }
+@media (max-width: 860px) {
+  .hero-grid { grid-template-columns: 1fr; gap: var(--s7); text-align: center; }
+  .hero-copy .lede { margin: 0 auto; }
+  .hero-copy .intro-actions { justify-content: center; }
+  .hero-art { justify-content: center; }
+  .arch-frame { max-width: 340px; padding: var(--s5); }
+}
+.land-sec { padding: 96px 0; border-top: 1px solid var(--border); }
+.land-sec h2 { margin-bottom: var(--s6); }
+#cost { scroll-margin-top: 68px; }
+.pill-tag { display: inline-block; font-size: var(--fs-xs); color: var(--muted); background: var(--surface); border: 1px solid var(--border); padding: 6px var(--s4); border-radius: 999px; margin-bottom: var(--s6); }
+.intro-actions { display: flex; flex-wrap: wrap; justify-content: center; gap: var(--s3); margin: var(--s6) 0 0; }
+.journey { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--s4); max-width: var(--w-wide); margin: 0 auto; }
+@media (max-width: 820px) { .journey { grid-template-columns: 1fr 1fr; } }
+.journey > div { background: var(--surface); border: 1px solid var(--border); border-radius: var(--r-lg); padding: var(--s5); text-align: left; }
+.journey .ico { margin-bottom: var(--s4); }
+.journey strong { display: block; font-weight: 600; margin-bottom: var(--s1); }
+.journey span:not(.ico) { display: block; font-size: var(--fs-sm); color: var(--muted); line-height: 1.5; }
+
+/* Solid icon in a sand circle */
+.ico { width: 44px; height: 44px; border-radius: 50%; background: var(--sand); color: var(--espresso); display: inline-grid; place-items: center; flex: none; }
+.ico svg { width: 20px; height: 20px; }
+.ico.sm { width: 32px; height: 32px; }
+.ico.sm svg { width: 15px; height: 15px; }
+
+/* ============ Buttons ============ */
+button, .btn { font: inherit; border-radius: 999px; border: 1px solid transparent; cursor: pointer; text-decoration: none; display: inline-flex; align-items: center; justify-content: center; gap: var(--s2); transition: transform .08s, background .2s, opacity .2s; color: inherit; background: none; padding: 0; }
+button:active, .btn:active { transform: translateY(1px); }
+.btn-primary, .btn-ghost { height: 48px; padding: 0 var(--s5); font-size: .9375rem; font-weight: 500; }
+.btn-primary { background: var(--ink); color: var(--ink-text); }
+.btn-primary:hover { opacity: .88; }
+.btn-ghost { background: transparent; color: var(--text); border-color: color-mix(in srgb, var(--text) 25%, transparent); }
+.btn-ghost:hover { background: var(--surface); }
+.btn-sm { height: 36px; padding: 0 var(--s4); font-size: var(--fs-sm); }
+.link-btn { color: var(--accent); font-size: var(--fs-xs); text-decoration: underline; text-underline-offset: 3px; }
+button:disabled { opacity: .4; cursor: not-allowed; }
+
+/* ============ Cards, panels, fields ============ */
+.card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--r-lg); padding: var(--s6); }
+@media (max-width: 600px) { .card { padding: var(--s5); } }
+.why-box { background: var(--field); border-radius: var(--r-md); padding: var(--s4); font-size: var(--fs-sm); color: var(--text); margin-top: var(--s3); }
+.field { margin-bottom: var(--s5); }
+.field:last-child { margin-bottom: 0; }
+.field > label, .label { display: block; font-weight: 500; font-size: var(--fs-sm); margin-bottom: var(--s2); }
+.hint { font-size: var(--fs-xs); color: var(--muted); margin-top: var(--s2); }
+input[type=text], input[type=number], textarea {
+  width: 100%; font: inherit; color: var(--text); background: var(--field); border: 1px solid var(--border); border-radius: var(--r-sm); padding: 0 var(--s4); transition: border-color .2s, box-shadow .2s;
+}
+input[type=text], input[type=number] { height: 48px; }
+textarea { padding: var(--s3) var(--s4); resize: vertical; min-height: 120px; line-height: 1.6; }
+input:focus, textarea:focus { border-color: var(--accent); outline: none; box-shadow: 0 0 0 3px var(--accent-soft); }
+input[type=range] { width: 100%; accent-color: var(--accent); }
+.row { display: grid; grid-template-columns: 1fr 1fr; gap: var(--s4); }
+.money { position: relative; }
+.money::before { content: "$"; position: absolute; left: var(--s4); top: 50%; transform: translateY(-50%); color: var(--faint); pointer-events: none; }
+.money input { padding-left: 30px; }
+.seg { display: inline-flex; background: var(--surface-2); border-radius: 999px; padding: var(--s1); gap: 2px; flex-wrap: wrap; justify-content: center; }
+.seg button { height: 36px; padding: 0 var(--s4); color: var(--muted); font-size: var(--fs-sm); font-weight: 500; }
+.seg button[aria-pressed="true"] { background: var(--surface); color: var(--text); box-shadow: 0 1px 2px rgba(59,42,32,.12); }
+.msg { font-size: var(--fs-xs); padding: var(--s3) var(--s4); border-radius: var(--r-sm); margin: 0 0 var(--s4); background: var(--butter); }
+.chips { display: flex; flex-wrap: wrap; gap: var(--s2); }
+.chip { display: inline-flex; align-items: center; gap: var(--s2); height: 34px; padding: 0 var(--s4); border: 1px solid var(--border); border-radius: 999px; font-size: var(--fs-xs); font-weight: 400; cursor: pointer; user-select: none; background: var(--field); color: var(--text); transition: background .2s; }
+.chip:hover { background: var(--surface-2); }
+.chip:has(input:checked) { background: var(--sand); border-color: transparent; }
+.chip input { accent-color: var(--espresso); margin: 0; }
+details.more { margin-top: var(--s4); font-size: var(--fs-sm); }
+details.more summary { cursor: pointer; color: var(--accent); list-style: none; display: inline; text-decoration: underline; text-underline-offset: 3px; font-size: var(--fs-xs); }
+details.more summary::-webkit-details-marker { display: none; }
+details.more[open] summary { margin-bottom: var(--s3); display: inline-block; }
+
+/* Espresso panels: key moments only */
+.tint, .counter-preview, .counter-hero, .plan-nums .hi { background: var(--espresso); color: var(--on-dark); border-radius: var(--r-lg); }
+.tint { padding: var(--s6); }
+@media (max-width: 600px) { .tint { padding: var(--s5); } }
+.tint .fine, .counter-preview .fine, .counter-hero .fine, .tint .compare-line, .plan-nums .hi span { color: var(--on-dark-muted) !important; }
+.tint .compare-line b { color: var(--on-dark); }
+.counter-preview { padding: var(--s4) var(--s5); margin-top: var(--s2); }
+.counter-preview strong { display: block; font-family: "Instrument Serif", serif; font-weight: 400; font-size: 2.2rem; line-height: 1.1; margin: var(--s1) 0; font-variant-numeric: tabular-nums; }
+.prompt-chip { background: var(--field); }
+.phrased ul { margin: var(--s2) 0 var(--s3); padding-left: 1.1em; }
+
+/* ============ Calculator ============ */
+.big-number { font-family: "Instrument Serif", serif; font-size: clamp(3.4rem, 10vw, 5.4rem); line-height: 1; margin: var(--s2) 0 var(--s3); font-variant-numeric: tabular-nums; }
+#cost .grid-2 { align-items: stretch; }
+#cost .grid-2 > .card { display: flex; flex-direction: column; }
+#cost .grid-2 > .card details.more { margin-top: auto; padding-top: var(--s4); }
+.compare-line { font-size: .9375rem; margin: 0; }
+.compare-line b { font-weight: 600; }
+.chart { display: flex; align-items: flex-end; gap: 3px; height: 110px; margin: var(--s5) 0 0; }
+.chart div { flex: 1; background: var(--sand); border-radius: 3px 3px 1px 1px; min-height: 2px; transition: height .5s ease; opacity: .45; }
+.chart div.ms { opacity: 1; background: var(--on-dark); }
+.milestones { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--s3); margin-top: var(--s4); }
+.milestones div { border-top: 1px solid color-mix(in srgb, var(--on-dark) 25%, transparent); padding-top: var(--s3); }
+.milestones span { color: var(--on-dark-muted); }
+.milestones strong { font-family: "Instrument Serif", serif; font-weight: 400; font-size: 1.5rem; font-variant-numeric: tabular-nums; }
+@media (max-width: 400px) { .milestones strong { font-size: 1.15rem; } }
+
+/* ============ Builder output ============ */
+.counter-hero { text-align: center; padding: var(--s5); margin-bottom: var(--s5); }
+.counter-hero .big-number { margin: var(--s1) 0; font-size: 3.4rem; }
+.tabs-row { display: flex; justify-content: center; margin-bottom: var(--s5); }
+.script { background: var(--field); border-radius: var(--r-md); padding: var(--s5); white-space: pre-wrap; font-size: 1rem; line-height: 1.75; }
+mark.rel { background: var(--sand-soft); color: inherit; border-radius: 4px; padding: 1px 3px; box-decoration-break: clone; -webkit-box-decoration-break: clone; }
+.script-actions { display: flex; gap: var(--s2); justify-content: center; flex-wrap: wrap; margin-top: var(--s4); }
+.legend { display: flex; gap: var(--s2); align-items: center; justify-content: center; font-size: var(--fs-xs); color: var(--muted); margin-top: var(--s4); }
+.legend .sw { flex: none; width: 12px; height: 12px; border-radius: 3px; background: var(--sand-soft); border: 1px solid var(--sand); }
+.pushback details { background: var(--field); border-radius: var(--r-md); padding: var(--s4) var(--s5); margin-bottom: var(--s2); }
+.pushback summary { cursor: pointer; font-weight: 500; list-style: none; display: flex; justify-content: space-between; gap: var(--s3); }
+.pushback summary::-webkit-details-marker { display: none; }
+.pushback summary::after { content: "+"; color: var(--muted); font-weight: 400; font-size: 1.2rem; line-height: 1; }
+.pushback details[open] summary::after { content: "–"; }
+.pushback p { margin: var(--s3) 0 0; }
+.pushback .why { color: var(--muted); font-size: var(--fs-xs); }
+.tab-intro { text-align: center; color: var(--muted); font-size: var(--fs-sm); margin: 0 auto var(--s4); max-width: 46ch; }
+
+/* ============ Practice (call) ============ */
+.call-grid { display: grid; grid-template-columns: 1.45fr 1fr; gap: var(--s5); align-items: start; }
+.call-grid > .card { position: sticky; top: 92px; }
+@media (max-width: 900px) { .call-grid { grid-template-columns: 1fr; } .call-grid > .card { position: static; } }
+.call { background: var(--surface); border: 1px solid var(--border); border-radius: var(--r-lg); overflow: hidden; }
+.call-head { display: flex; align-items: center; gap: var(--s3); padding: var(--s4) var(--s5); border-bottom: 1px solid var(--border); flex-wrap: wrap; }
+.avatar { width: 44px; height: 44px; border-radius: 50%; background: var(--sand); color: var(--espresso); display: grid; place-items: center; flex: none; }
+.avatar svg { width: 20px; height: 20px; }
+.avatar.sm { width: 30px; height: 30px; }
+.avatar.sm svg { width: 14px; height: 14px; }
+.who-block { margin-right: auto; min-width: 0; }
+.who-block strong { display: block; font-weight: 600; }
+.who-block span { font-size: var(--fs-xs); color: var(--muted); }
+.call-meta { display: flex; align-items: center; gap: var(--s3); font-size: var(--fs-xs); color: var(--muted); flex-wrap: wrap; }
+.timer { display: inline-flex; align-items: center; gap: 6px; font-variant-numeric: tabular-nums; }
+.timer .rec { width: 8px; height: 8px; border-radius: 50%; background: var(--border); }
+.timer.on .rec { background: var(--accent); }
+.offer-pill { background: var(--field); border: 1px solid var(--border); border-radius: 999px; height: 34px; padding: 0 var(--s4); display: inline-flex; align-items: center; white-space: nowrap; }
+.offer-pill strong { color: var(--text); font-family: "Instrument Serif", serif; font-weight: 400; font-size: 1.2rem; margin-left: 6px; font-variant-numeric: tabular-nums; }
+.offline-tag { font-size: var(--fs-eyebrow); padding: 3px 9px; border-radius: 999px; background: var(--butter); color: var(--butter-ink); }
+.mood-row { display: flex; align-items: center; gap: var(--s3); padding: var(--s3) var(--s5); border-bottom: 1px solid var(--border); font-size: var(--fs-xs); color: var(--muted); flex-wrap: wrap; }
+.mood-row .seg button { height: 30px; padding: 0 var(--s3); font-size: var(--fs-xs); }
+.transcript { height: 400px; overflow-y: auto; padding: var(--s5); display: flex; flex-direction: column; gap: var(--s4); }
+.line { display: flex; gap: var(--s2); align-items: flex-end; max-width: 88%; }
+.line.mgr { align-self: flex-start; }
+.line.me { align-self: flex-end; flex-direction: column; align-items: flex-end; }
+.bubble { padding: var(--s3) var(--s4); border-radius: var(--r-md); font-size: .9375rem; line-height: 1.55; }
+.line.mgr .bubble { background: var(--field); border-bottom-left-radius: 4px; }
+.line.me .bubble { background: var(--sand); border-bottom-right-radius: 4px; }
+mark.hedge { background: transparent; color: inherit; text-decoration: underline wavy var(--accent); text-decoration-thickness: 1.5px; text-underline-offset: 4px; cursor: help; }
+.tags { display: flex; gap: 6px; flex-wrap: wrap; justify-content: flex-end; margin-top: 6px; }
+.tag { font-size: var(--fs-eyebrow); height: 22px; padding: 0 var(--s2); border-radius: 999px; background: var(--field); color: var(--muted); display: inline-flex; gap: 4px; align-items: center; }
+.tag svg { width: 11px; height: 11px; }
+.tag.good { background: var(--sage); color: var(--sage-ink); }
+.tag.watch { background: var(--butter); color: var(--butter-ink); }
+.dots { display: inline-flex; gap: 4px; padding: var(--s4); background: var(--field); border-radius: var(--r-md); border-bottom-left-radius: 4px; }
+.dots i { width: 7px; height: 7px; border-radius: 50%; background: var(--faint); animation: blink 1.2s infinite ease-in-out; }
+.dots i:nth-child(2) { animation-delay: .15s; }
+.dots i:nth-child(3) { animation-delay: .3s; }
+@keyframes blink { 0%, 80%, 100% { opacity: .3; transform: none; } 40% { opacity: 1; transform: translateY(-3px); } }
+.controls { display: flex; align-items: center; gap: var(--s3); padding: var(--s4) var(--s5) var(--s2); border-top: 1px solid var(--border); }
+.controls textarea { min-height: 48px; height: 48px; border-radius: 24px; flex: 1; resize: none; padding: 12px var(--s4); }
+.icon-btn { width: 40px; height: 40px; border-radius: 50%; display: inline-grid; place-items: center; background: var(--field); border: 1px solid var(--border); color: var(--text); flex: none; }
+.icon-btn svg { width: 18px; height: 18px; }
+.icon-btn:hover { background: var(--surface-2); }
+.icon-btn.send { background: var(--ink); color: var(--ink-text); border-color: transparent; width: 48px; height: 48px; }
+.icon-btn.end { background: var(--accent); color: var(--on-dark); border-color: transparent; }
+.icon-btn.end:hover { opacity: .88; background: var(--accent); }
+.icon-btn.sm { width: 34px; height: 34px; }
+.icon-btn.sm svg { width: 15px; height: 15px; }
+.mic { width: 52px; height: 52px; background: var(--ink); color: var(--ink-text); border-color: transparent; }
+.mic:hover { background: var(--ink); opacity: .88; }
+.mic svg { width: 22px; height: 22px; }
+.mic.listening { background: var(--accent); animation: pulse 1.4s infinite; }
+@keyframes pulse { 0% { box-shadow: 0 0 0 0 color-mix(in srgb, var(--accent) 45%, transparent); } 100% { box-shadow: 0 0 0 14px transparent; } }
+.controls-sub { display: flex; gap: var(--s2); justify-content: space-between; align-items: center; padding: var(--s1) var(--s5) var(--s4); font-size: var(--fs-xs); color: var(--muted); }
+.controls-sub .btns { display: flex; gap: var(--s2); }
+
+/* Feedback panel */
+.wf-head { display: flex; justify-content: space-between; align-items: baseline; }
+.wf-head .serif { font-size: 1.5rem; }
+.wf-score { font-family: "Instrument Serif", serif; font-size: 2.3rem; line-height: 1; font-variant-numeric: tabular-nums; }
+.wf-score small { font-family: Inter, sans-serif; font-size: var(--fs-xs); color: var(--muted); margin-left: 2px; }
+.wf-label { font-size: var(--fs-xs); color: var(--muted); margin-top: var(--s1); }
+.wf-label b { color: var(--text); font-weight: 600; }
+.wf-wrap { display: grid; grid-template-columns: auto 1fr; gap: 6px; margin: var(--s4) 0 var(--s1); }
+.wf-y { writing-mode: vertical-rl; transform: rotate(180deg); font-size: .68rem; color: var(--muted); text-align: center; letter-spacing: .12em; text-transform: uppercase; }
+.wf-x { grid-column: 2; font-size: .68rem; color: var(--muted); text-align: center; letter-spacing: .12em; text-transform: uppercase; }
+.wf { position: relative; aspect-ratio: 1; max-width: 220px; width: 100%; margin: 0 auto; border-radius: var(--r-md); background: var(--field); overflow: hidden; }
+.wf::before, .wf::after { content: ""; position: absolute; background: var(--border); }
+.wf::before { left: 50%; top: 0; bottom: 0; width: 1px; }
+.wf::after { top: 50%; left: 0; right: 0; height: 1px; }
+.wf .zone { position: absolute; right: 0; top: 0; width: 50%; height: 50%; background: var(--sage); }
+.wf .q { position: absolute; font-size: .68rem; color: var(--muted); padding: var(--s2) 10px; line-height: 1.2; }
+.wf .q.tl { left: 0; top: 0; } .wf .q.tr { right: 0; top: 0; text-align: right; color: var(--sage-ink); font-weight: 600; }
+.wf .q.bl { left: 0; bottom: 0; } .wf .q.br { right: 0; bottom: 0; text-align: right; }
+.wf .pt { position: absolute; width: 16px; height: 16px; border-radius: 50%; transform: translate(-50%, 50%); background: var(--accent); border: 3px solid var(--field); box-shadow: 0 0 0 1px var(--accent); transition: left .6s ease, bottom .6s ease; }
+.wf .pt.old { width: 9px; height: 9px; border-width: 0; box-shadow: none; opacity: .3; }
+.fb-list { margin-top: var(--s4); }
+.fb-item { font-size: var(--fs-sm); padding: var(--s3) 0; border-top: 1px solid var(--border); line-height: 1.5; }
+.fb-item b { margin-bottom: 2px; }
+.hedge-chips { display: flex; flex-wrap: wrap; gap: 6px; margin: var(--s1) 0 6px; }
+.hedge-chip { font-size: var(--fs-eyebrow); height: 24px; display: inline-flex; align-items: center; padding: 0 10px; border-radius: 999px; background: var(--sand-soft); color: var(--accent); }
+.hedge-tip { font-size: var(--fs-xs); color: var(--muted); margin: 2px 0; }
+.sound { margin-top: var(--s5); }
+.sound h4 { margin: 0 0 6px; }
+.srow { display: flex; align-items: center; gap: var(--s3); padding: 10px 0; border-top: 1px solid var(--border); font-size: var(--fs-sm); }
+.srow svg { width: 16px; height: 16px; color: var(--accent); flex: none; }
+.srow .k { flex: 1; }
+.srow .v { color: var(--muted); font-variant-numeric: tabular-nums; }
+.srow .st { width: 8px; height: 8px; border-radius: 50%; background: var(--sage-ink); flex: none; }
+.srow .st.watch { background: var(--butter-ink); }
+.try-card { align-self: stretch; margin-top: var(--s2); background: var(--surface); border: 1px solid var(--border); border-radius: var(--r-md); padding: var(--s3) var(--s4); max-width: 100%; text-align: left; }
+.try-card .k { margin-bottom: var(--s1); }
+.try-card p { margin: 0 0 var(--s3); font-size: var(--fs-sm); line-height: 1.55; }
+.try-card.strong { background: var(--sage); border-color: transparent; font-size: var(--fs-sm); color: var(--sage-ink); }
+.try-toggle { margin-top: 6px; font-size: var(--fs-xs); color: var(--accent); text-decoration: underline; text-underline-offset: 3px; }
+.recap { text-align: left; margin: 0 var(--s5) var(--s4); border-radius: var(--r-md); background: var(--field); border: 1px solid var(--border); padding: var(--s5); }
+.recap-top { text-align: center; padding-bottom: var(--s3); }
+.recap-top .big-number { font-size: 3rem; margin: var(--s1) 0 6px; }
+.recap .label2 { margin: var(--s4) 0 var(--s2); }
+.trend { display: flex; align-items: flex-end; gap: var(--s2); height: 76px; }
+.trend div { flex: 1; max-width: 44px; display: flex; flex-direction: column; align-items: center; justify-content: flex-end; height: 100%; font-size: var(--fs-eyebrow); color: var(--muted); gap: 4px; }
+.trend i { display: block; width: 100%; border-radius: 6px 6px 2px 2px; background: var(--accent); }
+.recap blockquote { margin: 0; font-family: "Instrument Serif", serif; font-size: 1.25rem; line-height: 1.35; }
+.habit { background: var(--butter); border-radius: var(--r-sm); padding: var(--s3) var(--s4); font-size: var(--fs-sm); }
+.recap-actions { display: flex; gap: var(--s2); justify-content: center; flex-wrap: wrap; margin-top: var(--s4); }
+
+/* ============ Game plan ============ */
+.plan-grid { display: grid; grid-template-columns: 1.35fr 1fr; gap: var(--s5); max-width: var(--w-wide); margin: 0 auto; align-items: start; }
+#plan-pocket { position: sticky; top: 92px; }
+@media (max-width: 860px) { .plan-grid { grid-template-columns: 1fr; } #plan-pocket { position: static; } }
+.plan-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--r-lg); padding: var(--s6); }
+@media (max-width: 600px) { .plan-card { padding: var(--s5); } }
+.plan-card h3.serif { font-size: 1.75rem; margin: 0 0 var(--s5); }
+.plan-card h3.serif.side { font-size: 1.5rem; margin: 0; }
+.side-head { display: flex; align-items: center; gap: var(--s3); margin-bottom: var(--s2); }
+.plan-card .label { margin: var(--s5) 0 var(--s2); }
+.plan-card ul { padding-left: 1.1em; margin: 0; }
+.plan-nums { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--s3); margin-bottom: var(--s2); }
+@media (max-width: 480px) { .plan-nums { grid-template-columns: 1fr; } }
+.plan-nums div { background: var(--field); border-radius: var(--r-md); padding: var(--s3) var(--s4); }
+.plan-nums strong { font-family: "Instrument Serif", serif; font-weight: 400; font-size: 1.6rem; }
+.plan-nums .hi { border-radius: var(--r-md); }
+.cue { list-style: none; padding: 0; margin: 0; }
+.cue li { display: grid; grid-template-columns: 32px 1fr; gap: var(--s3); align-items: center; padding: var(--s3) 0; border-top: 1px solid var(--border); }
+.cue li:first-child { border-top: 0; }
+.cue .num { font-family: "Instrument Serif", serif; font-size: 1.8rem; line-height: 1.1; }
+.pocket { padding: var(--s4) 0; border-top: 1px solid var(--border); }
+.pocket:first-of-type { border-top: 0; }
+.pocket strong { display: block; font-weight: 600; margin-bottom: var(--s1); }
+.pocket p { margin: 0; font-size: var(--fs-sm); line-height: 1.55; }
+.checklist label { display: flex; gap: var(--s3); align-items: flex-start; padding: var(--s1) 0; cursor: pointer; font-size: var(--fs-sm); }
+.checklist input { accent-color: var(--espresso); margin-top: 5px; }
+.affirm { font-family: "Instrument Serif", serif; font-style: italic; font-size: 1.5rem; text-align: center; color: var(--accent); margin: var(--s6) 0 0; }
+
+/* ============ Misc ============ */
+.toast { position: fixed; top: 84px; left: 50%; transform: translateX(-50%); background: var(--ink); color: var(--ink-text); padding: 10px var(--s5); border-radius: 999px; font-size: var(--fs-sm); opacity: 0; transition: opacity .25s; pointer-events: none; z-index: 20; }
+.toast.show { opacity: 1; }
+
+@media print {
+  body { background: #fff; }
+  header.top, .step:not(#s4), #intro, footer, .no-print, .toast, .stepnav { display: none !important; }
+  #s4 { display: block !important; padding: 0; }
+  .plan-grid { grid-template-columns: 1fr; }
+  .plan-card { padding: 0 0 var(--s4); border: 0; }
+  .plan-card details { display: none; }
+  .plan-nums .hi { background: #fff; color: #000; border: 2px solid #000; }
+}
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; animation: none !important; } }
+</style>
+</head>
+<body class="on-intro">
+
+<header class="top">
+  <div class="wrap">
+    <button class="brand" type="button" data-go="0">Ask for <em>it</em></button>
+    <nav class="progress" aria-label="Progress">
+      <button type="button" data-go="1"><span class="d"></span><span class="lbl">Know your worth</span></button>
+      <button type="button" data-go="2"><span class="d"></span><span class="lbl">Find your words</span></button>
+      <button type="button" data-go="3"><span class="d"></span><span class="lbl">Rehearse</span></button>
+      <button type="button" data-go="4"><span class="d"></span><span class="lbl">Walk in ready</span></button>
+    </nav>
+  </div>
+</header>
+
+<main>
+<!-- INTRO -->
+<section id="intro" class="active" data-step="0">
+  <!-- Hero -->
+  <div class="land-hero">
+    <div class="wrap hero-grid">
+      <div class="hero-copy">
+        <div class="pill-tag">For women who are ready to ask</div>
+        <h1>You're allowed to <em>ask.</em></h1>
+        <p class="lede">Know your number, find your words, and practice with a realistic hiring manager before the real conversation.</p>
+        <div class="intro-actions">
+          <button class="btn-primary" type="button" data-go="1">Begin →</button>
+          <button class="btn-ghost" id="demoBtn" type="button">See an example</button>
+        </div>
+      </div>
+      <div class="hero-art" aria-hidden="true">
+        <div class="arch-frame">
+          <div class="mock">
+            <div class="mock-who"><span class="mock-av"></span>Hiring manager</div>
+            <div class="mock-bubble mgr">We'd like to offer you <b>$85,000</b>.</div>
+            <div class="mock-bubble me">Thank you, I'm excited about this role. Based on my results and market data, I'm asking for <b>$97,000</b>.</div>
+            <div class="mock-tag"><span></span>Warm &amp; firm · 88/100</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- How it works -->
+  <div class="land-sec">
+    <div class="wrap center">
+      <div class="kicker"><span class="dot"></span>How it works</div>
+      <h2>From offer to <em>ask</em></h2>
+      <div class="journey">
+        <div><span class="ico"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><ellipse cx="12" cy="6.5" rx="7" ry="3"/><path d="M5 9c0 1.7 3.1 3 7 3s7-1.3 7-3v2.6c0 1.7-3.1 3-7 3s-7-1.3-7-3z"/><path d="M5 14c0 1.7 3.1 3 7 3s7-1.3 7-3v2.6c0 1.7-3.1 3-7 3s-7-1.3-7-3z"/></svg></span><strong>Know your worth</strong><span>See what not asking really costs.</span></div>
+        <div><span class="ico"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M4 3h16a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2h-9l-5 4v-4H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2z"/></svg></span><strong>Find your words</strong><span>Get your number and a script.</span></div>
+        <div><span class="ico"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="8" y="2" width="8" height="13" rx="4"/><path d="M5 11a1 1 0 0 1 2 0 5 5 0 0 0 10 0 1 1 0 0 1 2 0 7 7 0 0 1-6 6.93V21h3a1 1 0 0 1 0 2H8a1 1 0 0 1 0-2h3v-3.07A7 7 0 0 1 5 11z"/></svg></span><strong>Rehearse</strong><span>Practice out loud with a realistic manager.</span></div>
+        <div><span class="ico"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M5 2a1 1 0 0 1 1 1v1h11.5a1 1 0 0 1 .8 1.6L16 9l2.3 3.4a1 1 0 0 1-.8 1.6H6v7a1 1 0 0 1-2 0V3a1 1 0 0 1 1-1z"/></svg></span><strong>Walk in ready</strong><span>Leave with a one-page plan.</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Step 1: cost -->
+  <div class="land-sec" id="cost">
+  <div class="wrap">
+    <div class="step-head center">
+      <div class="kicker"><span class="dot"></span>Step 1 of 4</div>
+      <h2>What not asking <em>costs</em> you</h2>
+      <p class="lede">A small gap today grows with every raise.</p>
+    </div>
+    <div class="grid-2">
+      <div class="card">
+        <div class="field">
+          <label for="c-offer">Your offer or current salary</label>
+          <div class="money"><input type="text" id="c-offer" inputmode="numeric" autocomplete="off" value="85,000"></div>
+        </div>
+        <div class="field">
+          <label for="c-ask">If you asked for <span id="c-ask-out">7%</span> more · <span id="c-ask-dollars">$5,950 a year</span></label>
+          <input type="range" id="c-ask" min="1" max="20" value="7">
+          <div class="hint">Most counter-offers are 5–10% above the first number.</div>
+        </div>
+        <details class="more">
+          <summary>Adjust assumptions</summary>
+          <div class="row">
+            <div class="field"><label for="c-raise">Yearly raise (%)</label><input type="number" id="c-raise" min="0" max="15" step="0.5" value="3"></div>
+            <div class="field"><label for="c-years">Career years</label><input type="number" id="c-years" min="1" max="50" value="30"></div>
+          </div>
+        </details>
+      </div>
+      <div class="tint" aria-live="polite">
+        <div class="fine" style="color:var(--text)">Over your career, not asking could cost</div>
+        <div class="big-number" id="c-total">$0</div>
+        <p id="c-sub" class="compare-line"></p>
+        <div class="chart" id="c-chart" aria-hidden="true"></div>
+        <div class="milestones" id="c-milestones"></div>
+      </div>
+    </div>
+    <p class="center" style="margin-top:44px"><button class="btn-primary" type="button" data-go="2">Start building your ask →</button></p>
+  </div>
+  </div>
+</section>
+
+<!-- STEP 2: BUILD (4 parts) -->
+<section class="step" id="s2" data-step="2">
+  <div class="wrap">
+    <div class="step-head center">
+      <div class="kicker"><span class="dot"></span>Step 2 of 4</div>
+      <h2 id="b-title">Find your <em>words</em></h2>
+      <p class="lede" id="b-sub"></p>
+    </div>
+    <div class="sub-progress" aria-hidden="true"><span></span><span></span><span></span><span></span></div>
+
+    <form id="buildForm" onsubmit="return false">
+      <!-- Part 1 -->
+      <div class="card single" data-part="0">
+        <div class="field center">
+          <div class="seg" role="group" aria-label="Scenario">
+            <button type="button" data-scenario="offer" aria-pressed="true">New job offer</button>
+            <button type="button" data-scenario="raise" aria-pressed="false">Raise at my job</button>
+          </div>
+        </div>
+        <div class="field">
+          <label for="b-role">Role / title</label>
+          <input type="text" id="b-role" placeholder="e.g. Senior Product Designer">
+        </div>
+        <div class="field">
+          <label for="b-offer" id="b-offer-label">Offer you received</label>
+          <div class="money"><input type="text" id="b-offer" inputmode="numeric" step="1000" placeholder="85,000"></div>
+        </div>
+      </div>
+      <!-- Part 2 -->
+      <div class="card single" data-part="1" hidden>
+        <div style="margin-bottom:20px"><label class="chip"><input type="checkbox" id="b-norange"> I don't know my range</label></div>
+        <p class="hint" id="range-skip-note" hidden style="margin:-8px 0 18px">No problem. Your counter will be based on your offer.</p>
+        <div class="row field" id="range-fields">
+          <div><label class="label" for="b-low">Market range: low</label><div class="money"><input type="text" id="b-low" inputmode="numeric" step="1000" placeholder="82,000"></div></div>
+          <div><label class="label" for="b-high">High</label><div class="money"><input type="text" id="b-high" inputmode="numeric" step="1000" placeholder="98,000"></div></div>
+        </div>
+        <div class="row field">
+          <div><label class="label" for="b-target">Your target</label><div class="money"><input type="text" id="b-target" inputmode="numeric" step="1000" placeholder="92,000"></div></div>
+          <div><label class="label" for="b-walk">Walk-away</label><div class="money"><input type="text" id="b-walk" inputmode="numeric" step="1000" placeholder="88,000"></div></div>
+        </div>
+        <p class="hint" id="b-suggest-note" hidden style="margin:-12px 0 18px">Suggested from your offer. Change them anytime.</p>
+        <div id="b-warn" aria-live="polite"></div>
+        <div class="counter-preview" id="b-preview" aria-live="polite"></div>
+        <details class="more">
+          <summary>Where do I find my market range?</summary>
+          <div class="why-box">Search your role and city on Levels.fyi, Glassdoor, Payscale, or the Bureau of Labor Statistics. Many job posts now list a range, and asking peers or recruiters counts too.</div>
+        </details>
+      </div>
+      <!-- Part 3 -->
+      <div class="card single" data-part="2" hidden>
+        <div class="field">
+          <label for="b-wins">Your top 2–3 wins, one per line</label>
+          <div class="chips" id="b-prompts" style="margin-bottom:10px" aria-label="Starter prompts"></div>
+          <textarea id="b-wins" placeholder="Led a redesign that lifted conversion 18%&#10;Mentored 4 junior designers"></textarea>
+          <div class="hint">Rough notes are fine. Numbers help. This is evidence, not bragging.</div>
+          <div style="margin-top:12px"><button type="button" class="btn-ghost btn-sm" id="b-phrase" hidden>Help me phrase it</button></div>
+          <div id="b-phrased" class="phrased"></div>
+        </div>
+        <div class="field">
+          <span class="label" id="extras-label">If salary is stuck, you'd also take</span>
+          <div class="chips" role="group" aria-labelledby="extras-label" id="b-extras"></div>
+        </div>
+      </div>
+    </form>
+    <!-- Part 4: results -->
+    <div data-part="3" hidden>
+      <div id="b-out" class="single" style="max-width:640px" aria-live="polite"></div>
+    </div>
+  </div>
+</section>
+
+<!-- STEP 3: PRACTICE -->
+<section class="step" id="s3" data-step="3">
+  <div class="wrap">
+    <div class="step-head center" style="margin-bottom:32px">
+      <div class="kicker"><span class="dot"></span>Step 3 of 4</div>
+      <h2>Practice the <em>conversation</em></h2>
+      <p class="lede">Reply out loud or by typing. Feedback after every reply.</p>
+    </div>
+
+    <div class="call-grid">
+      <div class="call">
+        <div class="call-head">
+          <div class="avatar" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><circle cx="12" cy="7.5" r="4.5"/><path d="M3 21c0-4.4 4-7.5 9-7.5s9 3.1 9 7.5z"/></svg></div>
+          <div class="who-block"><strong id="m-name">Hiring manager</strong><span id="m-role">Job offer call</span></div>
+          <div class="call-meta">
+            <span class="offline-tag" id="p-offline" hidden>Offline</span>
+            <span class="timer" id="p-timer"><span class="rec"></span><span id="p-time">00:00</span></span>
+            <span class="offer-pill">Offer <strong id="p-offer">$0</strong></span>
+          </div>
+        </div>
+        <div class="mood-row">
+          <span>Their mood</span>
+          <div class="seg" role="group" aria-label="Manager's mood">
+            <button type="button" data-diff="friendly" aria-pressed="false">Easygoing</button>
+            <button type="button" data-diff="realistic" aria-pressed="true">Fair</button>
+            <button type="button" data-diff="tough" aria-pressed="false">Under pressure</button>
+          </div>
+        </div>
+        <div class="transcript" id="p-chat" role="log" aria-live="polite" aria-label="Conversation"></div>
+        <div id="p-end"></div>
+        <form class="controls" id="p-form">
+          <button type="button" class="icon-btn mic" id="p-mic" aria-label="Speak your reply" title="Speak your reply (Chrome)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0 0 14 0"/><path d="M12 18v3"/></svg></button>
+          <label for="p-input" class="sr-only">Your reply</label>
+          <textarea id="p-input" rows="1" placeholder="Tap the mic, or type your reply…"></textarea>
+          <button type="submit" class="icon-btn send" id="p-send" aria-label="Send reply"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg></button>
+        </form>
+        <div class="controls-sub">
+          <span id="p-micstatus"></span>
+          <div class="btns">
+            <button type="button" class="icon-btn sm" id="p-restart" aria-label="Restart the conversation" title="Restart"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12a8 8 0 1 0 2.3-5.6"/><path d="M4 4v4h4"/></svg></button>
+            <button type="button" class="icon-btn sm end" id="p-endcall" aria-label="End the conversation" title="End"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 14c5-4.5 13-4.5 18 0l-2 3-3.5-1.2v-2.6c-2.3-.8-4.7-.8-7 0v2.6L5 17z"/></svg></button>
+          </div>
+        </div>
+      </div>
+
+      <div class="card" aria-live="polite">
+        <div class="wf-head"><span class="serif">Warm + Firm</span><span class="wf-score"><span id="p-score">–</span><small>/100</small></span></div>
+        <div class="wf-label" id="p-label">Aim for the top-right.</div>
+        <div class="wf-wrap">
+          <div class="wf-y">Warmth →</div>
+          <div class="wf" id="wf" aria-hidden="true">
+            <div class="zone"></div>
+            <span class="q tl">Warm but<br>vague</span><span class="q tr">Warm &amp;<br>firm</span>
+            <span class="q bl">Hesitant</span><span class="q br">Firm but<br>cold</span>
+          </div>
+          <div class="wf-x">Firmness →</div>
+        </div>
+        <div id="p-feedback"></div>
+        <div class="sound" id="p-sound" hidden></div>
+        <div class="fine" id="p-turns" style="margin-top:14px;text-align:right">Turn 0 of 5</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STEP 4: PLAN -->
+<section class="step" id="s4" data-step="4">
+  <div class="wrap">
+    <div class="step-head center no-print">
+      <div class="kicker"><span class="dot"></span>Step 4 of 4</div>
+      <h2>Walk in <em>ready</em></h2>
+      <p class="lede">Your one-page plan. Keep it open or print it.</p>
+    </div>
+    <div class="plan-grid">
+      <div class="plan-card" id="plan-card"></div>
+      <div class="plan-card" id="plan-pocket"></div>
+    </div>
+    <div class="no-print" style="display:flex;gap:10px;justify-content:center;margin-top:22px;flex-wrap:wrap">
+      <button class="btn-primary" type="button" id="plan-copy">Copy plan</button>
+      <a class="btn btn-ghost" id="plan-email" href="mailto:">Email it to myself</a>
+      <button class="btn-ghost" type="button" onclick="window.print()">Print / Save as PDF</button>
+    </div>
+    <p class="center no-print" style="margin-top:var(--s5)"><button type="button" class="link-btn" id="startOver">Start over with a new offer</button></p>
+  </div>
+</section>
+</main>
+
+<div class="stepnav no-print" id="stepnav" hidden>
+  <button type="button" class="btn-ghost" id="backBtn">← Back</button>
+  <span class="spacer"></span>
+  <button type="button" class="btn-primary" id="nextBtn">Next →</button>
+</div>
+
+<div class="toast" id="toast" role="status"></div>
+
+<script>
+// ================= State & helpers =================
+const $ = (s) => document.querySelector(s);
+const $$ = (s) => [...document.querySelectorAll(s)];
+const fmt = (n) => "$" + Math.round(Number(n) || 0).toLocaleString("en-US");
+const num = (el) => { const v = parseFloat(String(el.value).replace(/[,$\s]/g, "")); return isFinite(v) ? v : null; };
+const esc = (s) => String(s ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+const roundK = (n) => Math.round(n / 1000) * 1000;
+const fmtNum = (n) => (n === null || n === undefined || n === "" || !isFinite(Number(n)) ? "" : Number(n).toLocaleString("en-US"));
+// Money fields show commas as you type ($85,000)
+document.querySelectorAll(".money input").forEach((el) => el.addEventListener("input", () => {
+  const digits = el.value.replace(/[^\d]/g, "").slice(0, 9);
+  const formatted = digits ? Number(digits).toLocaleString("en-US") : "";
+  if (formatted !== el.value) { el.value = formatted; el.setSelectionRange(formatted.length, formatted.length); }
+}));
+const clamp = (n) => Math.max(0, Math.min(100, Math.round(n)));
+const REL_TIP = "This line shows you care about the relationship, which research finds helps women ask without backlash.";
+const rich = (t) => esc(t).replace(/⟦([\s\S]+?)⟧/g, `<mark class="rel" title="${REL_TIP}">$1</mark>`);
+const plain = (t) => String(t).replace(/[⟦⟧]/g, "");
+
+const EXTRAS = ["Sign-on bonus", "Equity", "Extra PTO", "Remote / flexible", "Better title", "6-month review", "Learning budget"];
+
+const state = {
+  step: 0, part: 0,
+  scenario: "offer", role: "", offer: null, low: null, high: null, target: null, walkAway: null,
+  wins: [], extras: [], aiAvailable: false,
+  practice: { difficulty: "realistic", timerId: null, callStart: 0, history: [], opening: "", currentOffer: 0, turns: 0, scores: [], points: [], best: null, turnLog: [], done: false, finalOffer: null, busy: false },
+  results: { self: null },
+};
+
+function toast(msg) { const t = $("#toast"); t.textContent = msg; t.classList.add("show"); clearTimeout(toast._t); toast._t = setTimeout(() => t.classList.remove("show"), 1800); }
+async function copyText(text) {
+  try { await navigator.clipboard.writeText(text); toast("Copied"); }
+  catch { const ta = document.createElement("textarea"); ta.value = text; document.body.appendChild(ta); ta.select(); try { document.execCommand("copy"); toast("Copied"); } catch { toast("Select the text and copy it manually"); } ta.remove(); }
+}
+
+function effective() {
+  const offer = state.offer || num($("#c-offer")) || 85000;
+  const target = state.target && state.target > offer ? state.target : roundK(offer * 1.08);
+  let counter = roundK(target * 1.05);
+  if (state.high && counter > state.high * 1.03) counter = roundK(Math.max(target, state.high));
+  if (counter <= offer) counter = roundK(offer * 1.1);
+  const walkAway = state.walkAway || roundK(offer * 1.02);
+  return { offer, target, counter, walkAway, role: state.role || (state.scenario === "raise" ? "my current role" : "this role"), wins: state.wins.length ? state.wins : ["Delivered strong results in similar roles"] };
+}
+
+// ================= Navigation =================
+const PARTS = [
+  ["The <em>basics</em>", "What are you negotiating?"],
+  ["Your <em>numbers</em>", "Know your range before they name theirs."],
+  ["Your <em>evidence</em>", "What makes you worth it, in your own words."],
+  ["Your <em>ask</em>", ""],
+];
+function go(step, part = 0) {
+  // Step 1 (Know your worth) lives on the scrolling landing page, at #cost.
+  let anchor = null;
+  if (step === 1) { step = 0; anchor = "cost"; }
+  state.step = step; state.part = part;
+  document.body.dataset.width = step === 2 ? "form" : "wide";
+  $$("[data-step]").forEach((s) => s.classList.toggle("active", Number(s.dataset.step) === step));
+  document.body.classList.toggle("on-intro", step === 0);
+  $("#stepnav").hidden = step === 0;
+  const current = step === 0 ? 1 : step;
+  $$(".progress button").forEach((b) => {
+    const n = Number(b.dataset.go);
+    if (n === current) b.setAttribute("aria-current", "step"); else b.removeAttribute("aria-current");
+    b.classList.toggle("done", n < current);
+  });
+  if (step === 2) {
+    $$("[data-part]").forEach((p) => (p.hidden = Number(p.dataset.part) !== part));
+    $$(".sub-progress span").forEach((s, i) => s.classList.toggle("on", i <= part));
+    $("#b-title").innerHTML = PARTS[part][0];
+    $("#b-sub").textContent = PARTS[part][1];
+    $("#b-sub").hidden = !PARTS[part][1];
+    if (part === 1) { applySuggestions(); readBuild(); }
+    if (part === 3) renderBuild();
+  }
+  if (step === 3 && !state.practice.turns) resetPractice();
+  if (step === 4) renderPlan();
+  $("#nextBtn").hidden = step === 4;
+  $("#nextBtn").textContent = step === 2 && part < 3 ? "Continue →" : step === 3 ? "See my plan →" : "Next →";
+  if (anchor) requestAnimationFrame(() => document.getElementById(anchor).scrollIntoView({ behavior: "smooth" }));
+  else window.scrollTo({ top: 0, behavior: "instant" });
+}
+$$("[data-go]").forEach((b) => b.addEventListener("click", () => go(Number(b.dataset.go))));
+$("#nextBtn").addEventListener("click", () => {
+  if (state.step === 2 && state.part < 3) return go(2, state.part + 1);
+  go(Math.min(4, state.step + 1));
+});
+$("#backBtn").addEventListener("click", () => {
+  if (state.step === 2 && state.part > 0) return go(2, state.part - 1);
+  if (state.step === 3) return go(2, 3);
+  go(Math.max(0, state.step - 1));
+});
+
+// ================= 1. Calculator =================
+function calc() {
+  const offer = num($("#c-offer")) || 0;
+  const askPct = Number($("#c-ask").value);
+  const r = (num($("#c-raise")) ?? 3) / 100;
+  const years = Math.min(50, Math.max(1, Math.round(num($("#c-years")) || 30)));
+  $("#c-ask-out").textContent = askPct + "%";
+  const delta = offer * askPct / 100;
+  let total = 0; const cum = [];
+  for (let t = 0; t < years; t++) { total += delta * Math.pow(1 + r, t); cum.push(total); }
+  animateNumber($("#c-total"), total);
+  $("#c-ask-dollars").textContent = fmt(delta) + " a year";
+  // Relatable comparison, derived only from her own numbers
+  const ratio = offer ? total / offer : 0;
+  $("#c-sub").hidden = !offer;
+  $("#c-sub").innerHTML = ratio >= 1
+    ? `That's about <b>${ratio.toFixed(1)} years</b> of your current salary.`
+    : `That's about <b>${Math.round(ratio * 100)}%</b> of a full year's salary.`;
+  // Milestones at roughly 1/3, 2/3 and the end of the career
+  const ms = [...new Set([Math.round(years / 3), Math.round((2 * years) / 3), years].map((m) => Math.max(1, m)))];
+  $("#c-chart").innerHTML = cum.map((v, i) => `<div class="${ms.includes(i + 1) ? "ms" : ""}" style="height:${total ? (v / total) * 100 : 0}%"></div>`).join("");
+  $("#c-milestones").style.gridTemplateColumns = `repeat(${ms.length}, 1fr)`;
+  $("#c-milestones").innerHTML = ms.map((m) => `<div><span>By year ${m}</span><strong>${fmt(cum[m - 1])}</strong></div>`).join("");
+}
+function animateNumber(el, to) {
+  const from = el._v || 0; const start = performance.now(); const dur = 700;
+  cancelAnimationFrame(el._raf);
+  const step = (now) => { const p = Math.min(1, (now - start) / dur); const e = 1 - Math.pow(1 - p, 3); el.textContent = fmt(from + (to - from) * e); if (p < 1) el._raf = requestAnimationFrame(step); else el._v = to; };
+  el._raf = requestAnimationFrame(step);
+}
+["#c-offer", "#c-ask", "#c-raise", "#c-years"].forEach((s) => $(s).addEventListener("input", () => {
+  calc();
+  if (s === "#c-offer" && !$("#b-offer").dataset.touched) { $("#b-offer").value = $("#c-offer").value; readBuild(); }
+}));
+
+// ================= 2. Script builder =================
+$("#b-extras").innerHTML = EXTRAS.map((x, i) => `<label class="chip"><input type="checkbox" value="${esc(x)}" id="ex${i}">${esc(x)}</label>`).join("");
+$$("[data-scenario]").forEach((b) => b.addEventListener("click", () => {
+  state.scenario = b.dataset.scenario;
+  $$("[data-scenario]").forEach((x) => x.setAttribute("aria-pressed", String(x === b)));
+  $("#b-offer-label").textContent = state.scenario === "raise" ? "Your current salary" : "Offer you received";
+  polished = null; scriptFmt = "call";
+  readBuild(); resetPractice();
+}));
+$("#b-offer").addEventListener("input", (e) => (e.target.dataset.touched = "1"));
+$("#buildForm").addEventListener("input", readBuild);
+
+function readBuild() {
+  applySuggestions();
+  state.role = $("#b-role").value.trim();
+  state.offer = num($("#b-offer"));
+  state.low = num($("#b-low")); state.high = num($("#b-high"));
+  state.target = num($("#b-target")); state.walkAway = num($("#b-walk"));
+  state.wins = $("#b-wins").value.split("\n").map((s) => s.trim().replace(/[\s.;,]+$/, "")).filter(Boolean).slice(0, 3);
+  state.extras = $$("#b-extras input:checked").map((i) => i.value);
+  validate(); updatePreview();
+  if (!state.practice.turns) resetPractice();
+}
+
+// ---- Smart defaults: suggest target and walk-away from the offer until she edits them
+["#b-target", "#b-walk"].forEach((sel) => $(sel).addEventListener("input", (e) => (e.target.dataset.touched = "1")));
+function applySuggestions() {
+  const offer = num($("#b-offer"));
+  if (!offer) return;
+  const t = $("#b-target"), w = $("#b-walk");
+  if (!t.dataset.touched) t.value = fmtNum(roundK(offer * 1.08));
+  if (!w.dataset.touched) w.value = fmtNum(roundK(offer * 1.03));
+  $("#b-suggest-note").hidden = !!(t.dataset.touched && w.dataset.touched);
+}
+function updatePreview() {
+  const box = $("#b-preview");
+  if (!state.offer) { box.hidden = true; return; }
+  box.hidden = false;
+  box.innerHTML = `<div class="fine" style="color:var(--text)">Your counter will be</div><strong>${fmt(effective().counter)}</strong><div class="fine">A little above your target, so you have room to meet in the middle.</div>`;
+}
+$("#b-norange").addEventListener("change", (ev) => {
+  const on = ev.target.checked;
+  $("#range-fields").hidden = on; $("#range-skip-note").hidden = !on;
+  if (on) { $("#b-low").value = ""; $("#b-high").value = ""; }
+  readBuild();
+});
+
+// ---- Win helper: starter prompts + "Help me phrase it"
+const PROMPTS = [["A result with a number", "Increased ___ by ___%"], ["Something you led", "Led ___"], ["A problem you solved", "Solved ___, which ___"], ["Praise you received", "Recognized for ___"]];
+$("#b-prompts").innerHTML = PROMPTS.map(([label], i) => `<button type="button" class="chip prompt-chip" data-prompt="${i}">+ ${esc(label)}</button>`).join("");
+$$("[data-prompt]").forEach((b) => b.addEventListener("click", () => {
+  const ta = $("#b-wins"); const line = PROMPTS[Number(b.dataset.prompt)][1];
+  const cur = ta.value.replace(/\s+$/, "");
+  ta.value = cur ? cur + "\n" + line : line;
+  const at = ta.value.length - line.length + line.indexOf("___");
+  ta.focus(); ta.setSelectionRange(at, at + 3);
+  readBuild();
+}));
+$("#b-phrase").addEventListener("click", async () => {
+  const notes = $("#b-wins").value.trim();
+  if (!notes) { toast("Jot a few rough notes first, then tap again."); return; }
+  const btn = $("#b-phrase"); btn.disabled = true; btn.textContent = "Phrasing…";
+  const data = await api("/api/wins", { notes, role: state.role });
+  btn.disabled = false; btn.textContent = "Help me phrase it";
+  if (!data || data.fallback || !data.wins?.length) { toast("Couldn't rephrase right now. Your notes are still here."); return; }
+  $("#b-phrased").innerHTML = `<div class="why-box"><div class="k-lbl">Suggested wording</div>
+    <ul>${data.wins.map((w) => `<li>${esc(w)}</li>`).join("")}</ul>
+    <div style="display:flex;gap:8px;flex-wrap:wrap"><button type="button" class="btn-primary btn-sm" id="b-use">Use these</button><button type="button" class="btn-ghost btn-sm" id="b-keep">Keep mine</button></div></div>`;
+  $("#b-use").addEventListener("click", () => { $("#b-wins").value = data.wins.join("\n"); $("#b-phrased").innerHTML = ""; readBuild(); toast("Updated"); });
+  $("#b-keep").addEventListener("click", () => ($("#b-phrased").innerHTML = ""));
+});
+
+function validate() {
+  const w = [];
+  if (state.offer && state.target && state.target <= state.offer) w.push("Your target is at or below the offer. Try 5–10% above it.");
+  if (state.walkAway && state.target && state.walkAway > state.target) w.push("Your walk-away should sit below your target.");
+  if (state.low && state.high && state.low > state.high) w.push("The low end of your range is above the high end.");
+  $("#b-warn").innerHTML = w.map((m) => `<div class="msg">${esc(m)}</div>`).join("");
+}
+
+const joinList = (arr) => arr.length <= 1 ? (arr[0] || "") : arr.slice(0, -1).join(", ") + " and " + arr.at(-1);
+const lc = (s) => s ? s.charAt(0).toLowerCase() + s.slice(1) : s;
+
+function scripts(e) {
+  const range = state.low && state.high ? ` (roughly ${fmt(state.low)}–${fmt(state.high)})` : "";
+  const winsTxt = joinList(e.wins.map(lc));
+  if (state.scenario === "raise") {
+    return {
+      call: `Thanks for making time for this. Over the past year I've ${winsTxt}, and I'm proud of the impact that's had on our team.\n\n⟦I care a lot about this team and want to keep growing here for the long term, which is why I want my pay to reflect the role I'm playing.⟧\n\nBased on those results and market data for ${e.role} roles${range}, I'd like to adjust my salary to ${fmt(e.counter)}.\n\nWhat would it take for us to make that happen this cycle?`,
+      email: `Subject: Compensation conversation\n\nHi [Manager],\n\nThank you for your support this year. I'd love to set up time to talk about my compensation. Since my last review I've ${winsTxt}.\n\n⟦I'm committed to this team for the long run, and I want my pay to keep pace with the role I'm playing.⟧ Based on that impact and market data for ${e.role} roles${range}, I'm requesting an adjustment to ${fmt(e.counter)}.\n\nCould we find time this week to talk about a path to get there?\n\nBest,\n[Your name]`,
+    };
+  }
+  return {
+    call: `Thank you so much for the offer. I'm genuinely excited about the ${e.role} role and what we could build together.\n\n⟦I want to start here fully committed and focused on the work, so I'd like to get the compensation right up front.⟧\n\nBased on my research for this role and market${range}, and what I bring, including that I've ${winsTxt}, I'm looking for a base salary of ${fmt(e.counter)}.\n\nIf we can get there, I'm ready to move forward. How can we make that work together?`,
+    email: `Subject: ${e.role} offer\n\nHi [Name],\n\nThank you again for the offer. I'm excited about the role and the team.\n\n⟦I want to start fully committed, so I'd like to get the details right before I say yes.⟧ Based on market data for this position${range} and the experience I bring, including that I've ${winsTxt}, I'd like to ask for a base salary of ${fmt(e.counter)}.\n\nI'm confident we can find something that works for both of us.\n\nBest,\n[Your name]`,
+  };
+}
+
+function pushbacks(e) {
+  const extras = state.extras.length ? joinList(state.extras.map(lc)) : "a sign-on bonus or an earlier review";
+  const win = lc(e.wins[0]);
+  if (state.scenario === "raise") return {
+    common: [
+      ["\"It's not in the budget this cycle.\"", `I understand. Could we agree today on a date and clear criteria for revisiting this, in writing? Meanwhile, I'd be open to ${extras}.`, "Turn a no into a specific when."],
+      ["\"You're already paid within the band.\"", `I appreciate that. Given that I've ${win}, I'm performing at the next level. What would it take to move me there?`, "Shift from the band to your level."],
+      ["\"Let's talk at your annual review.\"", `I'd like to start now so we're aligned by then. Can we set goals today that mean ${fmt(e.counter)} at review time?`, "Agree on goals now so the review is a formality."],
+    ],
+    women: [
+      ["\"You're so great at keeping the team together.\"", `Thank you, I'm proud of that. It's real impact, along with having ${win}, and it's why I'm asking for ${fmt(e.counter)}.`, "Women are often praised for invisible \"glue work\" instead of paid for it."],
+      ["\"That feels a little aggressive.\"", `I appreciate you saying so. I care about this team and want this to work for both of us. The number comes from market data. Can we look at it together?`, "Stay warm and keep the number."],
+      ["\"I didn't think this was about money for you.\"", `I love this work, and fair pay is part of what lets me keep doing it here. Both can be true.`, "Caring about the work doesn't mean accepting less."],
+    ],
+  };
+  return {
+    common: [
+      ["\"Our budget is fixed.\"", `I understand. If base is firm, could we look at ${extras} to close the gap?`, "When base pay is stuck, open up the package."],
+      ["\"What are your expectations?\"", `Based on my research for this role, I'm targeting ${fmt(e.counter)}.`, "Name your number. Hedging invites a lowball."],
+      ["\"This is our best offer.\"", `Thank you for being direct. Would a sign-on bonus or a six-month review be possible, to get closer to ${fmt(e.counter)}?`, "\"Best offer\" usually means best base salary."],
+      ["\"We need an answer by tomorrow.\"", `I want to give this the consideration it deserves. Could I get back to you by [day]?`, "Asking for 2–3 days is normal."],
+    ],
+    women: [
+      ["\"We didn't expect you to negotiate.\"", `I'm glad we're talking. It shows how seriously I'm taking this role, and why ${fmt(e.counter)} matters to me.`, "Present negotiating as a sign of your commitment."],
+      ["\"That feels a little aggressive.\"", `I appreciate you saying so. I'm excited to join and want this to work for both of us. The number comes from market data. Can we look at it together?`, "Stay warm and keep the number."],
+      ["\"Can you handle the time commitment?\"", `I'm fully confident in my ability to do this well, and my track record shows it: I've ${win}. Back to the offer, I'm looking for ${fmt(e.counter)}.`, "Personal-life questions aren't relevant to pay. Redirect to your results."],
+    ],
+  };
+}
+
+let currentTab = "script", scriptFmt = "call", polished = null;
+function renderBuild() {
+  const e = effective(); const s = scripts(e); const pb = pushbacks(e);
+  const text = scriptFmt === "polished" && polished ? polished : s[scriptFmt] || s.call;
+  const card = ([q, a, why]) => `<details><summary>${esc(q)}</summary><p>${esc(a)}</p><p class="why">${esc(why)}</p></details>`;
+  let body = "";
+  if (currentTab === "script") {
+    body = `
+      <div class="tabs-row"><div class="seg" role="group" aria-label="Script format">
+        <button type="button" data-fmt="call" aria-pressed="${scriptFmt === "call"}">Say it</button>
+        <button type="button" data-fmt="email" aria-pressed="${scriptFmt === "email"}">Email it</button>
+        ${polished ? `<button type="button" data-fmt="polished" aria-pressed="${scriptFmt === "polished"}">Polished</button>` : ""}
+      </div></div>
+      <div class="script" id="b-script">${rich(text)}</div>
+      <div class="legend" ${/⟦/.test(text) ? "" : "hidden"}><span class="sw"></span><span>Shows you care about the relationship.</span>
+        <button type="button" class="link-btn" id="whyRel">Why?</button></div>
+      <div class="why-box" id="whyRelBox" hidden>Bowles and colleagues found women face more backlash than men for negotiating, and that pairing a firm ask with a reason that respects the relationship improves outcomes.</div>
+      <div class="script-actions">
+        <button type="button" class="btn-ghost btn-sm" id="b-copy">Copy</button>
+        <button type="button" class="btn-ghost btn-sm" id="b-polish" ${state.aiAvailable ? "" : "hidden"}>Polish wording</button>
+      </div>`;
+  } else if (currentTab === "pushback") {
+    body = `<p class="tab-intro">Tap a line to see a strong reply.</p><div class="pushback">${pb.common.map(card).join("")}</div>`;
+  } else {
+    body = `<p class="tab-intro">Women are more likely to hear comments about tone, commitment or personal life. Have a line ready.</p><div class="pushback">${pb.women.map(card).join("")}</div>`;
+  }
+  $("#b-out").innerHTML = `
+    <div class="counter-hero">
+      <div class="fine">Your counter</div>
+      <div class="big-number">${fmt(e.counter)}</div>
+      <div class="fine">Target ${fmt(e.target)} · Walk-away ${fmt(e.walkAway)}</div>
+    </div>
+    <div class="tabs-row"><div class="seg" role="group" aria-label="Results">
+      <button type="button" data-tab="script" aria-pressed="${currentTab === "script"}">Your script</button>
+      <button type="button" data-tab="pushback" aria-pressed="${currentTab === "pushback"}">If they push back</button>
+      <button type="button" data-tab="women" aria-pressed="${currentTab === "women"}">What women hear</button>
+    </div></div>
+    <div class="card">${body}</div>`;
+  $$("[data-tab]").forEach((b) => b.addEventListener("click", () => { currentTab = b.dataset.tab; renderBuild(); }));
+  $$("[data-fmt]").forEach((b) => b.addEventListener("click", () => { scriptFmt = b.dataset.fmt; renderBuild(); }));
+  $("#b-copy")?.addEventListener("click", () => copyText(plain(text)));
+  $("#b-polish")?.addEventListener("click", polish);
+  $("#whyRel")?.addEventListener("click", () => ($("#whyRelBox").hidden = !$("#whyRelBox").hidden));
+}
+
+async function polish() {
+  const btn = $("#b-polish"); btn.disabled = true; btn.textContent = "Polishing…";
+  const e = effective();
+  const data = await api("/api/polish", { context: { scenario: state.scenario, role: e.role, wins: e.wins }, script: plain(scripts(e).call) });
+  if (data && !data.fallback && data.script) { polished = data.script; scriptFmt = "polished"; renderBuild(); toast("Polished"); }
+  else { btn.disabled = false; btn.textContent = "Polish wording"; toast("Polishing isn't available right now."); }
+}
+
+async function api(path, body, timeoutMs = 15000) {
+  const ctrl = new AbortController(); const t = setTimeout(() => ctrl.abort(), timeoutMs);
+  try {
+    const r = await fetch(path, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(body), signal: ctrl.signal });
+    return await r.json();
+  } catch { return { fallback: true }; }
+  finally { clearTimeout(t); }
+}
+
+// ================= 3. Practice =================
+const svg = (d) => `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">${d}</svg>`;
+const fsvg = (d) => `<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">${d}</svg>`;
+const SOLID = {
+  heart: fsvg('<path d="M12 21s-7.5-4.6-9.5-9.2C1 8.3 3.2 4.5 7 4.5c2.1 0 3.6 1.1 5 2.9 1.4-1.8 2.9-2.9 5-2.9 3.8 0 6 3.8 4.5 7.3C19.5 16.4 12 21 12 21z"/>'),
+  star: fsvg('<path d="M12 2.5l2.9 6 6.6.9-4.8 4.6 1.2 6.5L12 17.4l-5.9 3.1 1.2-6.5L2.5 9.4l6.6-.9z"/>'),
+  tag: fsvg('<path fill-rule="evenodd" d="M3 4a1 1 0 0 1 1-1h7.6a1 1 0 0 1 .7.3l8.4 8.4a1 1 0 0 1 0 1.4l-7.6 7.6a1 1 0 0 1-1.4 0l-8.4-8.4a1 1 0 0 1-.3-.7zm4.5 1.9a1.6 1.6 0 1 0 0 3.2 1.6 1.6 0 0 0 0-3.2z"/>'),
+  chat: fsvg('<path d="M3 5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v6a2 2 0 0 1-2 2H9l-4 3v-3a2 2 0 0 1-2-2z"/><path d="M19 8h1a2 2 0 0 1 2 2v6a2 2 0 0 1-2 2v3l-4-3h-5a2 2 0 0 1-2-2v-1h6a3 3 0 0 0 3-3z"/>'),
+  speech: fsvg('<path d="M4 3h16a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2h-9l-5 4v-4H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2z"/>'),
+};
+const ICON = {
+  user: fsvg('<circle cx="12" cy="7.5" r="4.5"/><path d="M3 21c0-4.4 4-7.5 9-7.5s9 3.1 9 7.5z"/>'),
+  mic: svg('<rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0 0 14 0"/><path d="M12 18v3"/>'),
+  stop: svg('<rect x="7" y="7" width="10" height="10" rx="2"/>'),
+  pace: fsvg('<path fill-rule="evenodd" d="M12 2a10 10 0 1 1 0 20 10 10 0 0 1 0-20zm1 5a1 1 0 0 0-2 0v5.4l3.4 2.3a1 1 0 0 0 1.2-1.6L13 11.4z"/>'),
+  filler: fsvg('<path d="M4 3h16a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2h-9l-5 4v-4H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2z"/>'),
+  pause: fsvg('<rect x="6" y="4" width="4" height="16" rx="1.5"/><rect x="14" y="4" width="4" height="16" rx="1.5"/>'),
+  volume: fsvg('<path d="M3 9.5A1.5 1.5 0 0 1 4.5 8H8l5-4v16l-5-4H4.5A1.5 1.5 0 0 1 3 14.5z"/><path d="M16 8.5a5 5 0 0 1 0 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>'),
+};
+
+const HEDGES = [
+  [/\bjust\b/gi, "\"Just\" shrinks your request."],
+  [/\bsorry\b|\bapologi[sz]e\b/gi, "No need to apologize for asking."],
+  [/\bI think\b|\bI feel like\b|\bI guess\b/gi, "State it as fact."],
+  [/\bmaybe\b|\bperhaps\b|\bpossibly\b/gi, "Hedging invites a no."],
+  [/\bif (it'?s )?possible\b|\bif that'?s okay\b|\bif you don'?t mind\b/gi, "You don't need permission."],
+  [/\bI was (just )?(hoping|wondering)\b/gi, "Try \"I'm asking for…\""],
+  [/\bkind of\b|\bsort of\b|\ba (little|bit)( more)?\b/gi, "Name the exact number."],
+  [/\bdoes that make sense\b|\bis that (ok|okay|alright)\b/gi, "Don't end with a check-in. Pause instead."],
+  [/\bno worries if not\b|\btotally (fine|understand) if not\b/gi, "Don't hand them an easy no."],
+];
+
+function parseNumbers(text) {
+  const out = []; const re = /\$?\s?(\d{1,3}(?:,\d{3})+|\d+(?:\.\d+)?)\s?(k|K|thousand)?\b/g; let m;
+  while ((m = re.exec(text))) { let v = parseFloat(m[1].replace(/,/g, "")); if (m[2]) v *= 1000; if (v >= 20000 && v <= 2000000) out.push(v); }
+  return out;
+}
+
+function analyze(text) {
+  const e = effective();
+  const hits = [];
+  HEDGES.forEach(([re, tip]) => { re.lastIndex = 0; let m; while ((m = re.exec(text))) hits.push({ start: m.index, end: m.index + m[0].length, word: m[0], tip }); });
+  hits.sort((a, b) => a.start - b.start || b.end - a.end);
+  const clean = []; let lastEnd = -1;
+  for (const h of hits) if (h.start >= lastEnd) { clean.push(h); lastEnd = h.end; }
+  const nums = parseNumbers(text);
+  const asked = nums.length ? Math.max(...nums) : null;
+  const gratitude = /\b(thank|thanks|appreciate|excited|grateful|thrilled|love)\b/i.test(text);
+  const value = /\b((I)('ve| have)? ?(led|built|grew|grown|delivered|launched|managed|increased|saved|drove|driven|shipped|mentored|created|improved|closed)|experience|track record|results|impact|research|market)\b/i.test(text);
+  const collab = /\b(we|together|work with|how can|could we|can we|both)\b/i.test(text);
+  const relational = /\b(commit|committed|long[- ]term|team|relationship|fair|focused on the work|works? for both)\b/i.test(text);
+  const short = text.trim().length < 25;
+  const warmth = clamp(30 + (gratitude ? 25 : 0) + (collab ? 20 : 0) + (relational ? 15 : 0) + (/\?\s*$/.test(text) && collab ? 5 : 0) - (short ? 10 : 0));
+  const firmness = clamp(25 + (asked ? 15 : 0) + (asked && asked >= e.counter * 0.99 ? 20 : 0) + (value ? 20 : 0) - Math.min(45, clean.length * 12) - (asked && asked < e.walkAway ? 15 : 0) - (short ? 10 : 0));
+  let warning = "";
+  if (!asked) warning = "Name a specific number.";
+  else if (asked < e.walkAway) warning = `${fmt(asked)} is below your walk-away of ${fmt(e.walkAway)}.`;
+  else if (asked < e.counter * 0.99 && asked > state.practice.currentOffer) warning = `${fmt(asked)} is below your counter of ${fmt(e.counter)}. Anchor higher.`;
+  return { hedges: clean, asked, gratitude, value, collab, relational, warmth, firmness, warning };
+}
+const overall = (w, f) => clamp((w + f) / 2 - Math.max(0, Math.abs(w - f) - 30) * 0.4);
+
+function highlight(text, hedges) {
+  let html = "", i = 0;
+  for (const h of hedges) { html += esc(text.slice(i, h.start)) + `<mark class="hedge" title="${esc(h.tip)}">${esc(text.slice(h.start, h.end))}</mark>`; i = h.end; }
+  return html + esc(text.slice(i));
+}
+
+function strongRewrite() {
+  const e = effective(); const w = lc(e.wins[0]);
+  return state.scenario === "raise"
+    ? `I appreciate your support, and I want to keep growing here. Over the past year I've ${w}. Based on that impact and market data, I'm asking for ${fmt(e.counter)}. What would it take to get there?`
+    : `Thank you, I'm excited about this role and want to start fully committed. Given that I've ${w}, and based on market data, I'm asking for ${fmt(e.counter)}. How can we get there together?`;
+}
+
+// Offline fallback manager (used when the live service is unavailable)
+const DIFF_FRAC = { friendly: 1.0, realistic: 0.65, tough: 0.45 };
+function scriptedManager(a) {
+  const e = effective(); const p = state.practice;
+  const hiddenMax = Math.round((e.offer + DIFF_FRAC[p.difficulty] * (e.counter - e.offer)) / 500) * 500;
+  const strong = overall(a.warmth, a.firmness) >= (p.difficulty === "tough" ? 62 : 55) && a.asked;
+  if (a.asked && a.asked <= p.currentOffer) return { reply: `Great, then ${fmt(p.currentOffer)} it is. I'll get the paperwork moving today.`, deal: true };
+  if (!strong) {
+    const lines = !a.asked
+      ? ["I want to help, but I'm not sure what you're asking for. Do you have a number in mind?", "I'd need something more concrete to take to finance. What would make this a yes?"]
+      : p.difficulty === "tough"
+        ? [`I'll be honest, I wasn't expecting a counter. The budget's pretty tight at ${fmt(p.currentOffer)}.`, "We do have other strong people in the process. Why is this the right number?"]
+        : [`${fmt(a.asked)} is more than I planned for. Can you help me understand where that's coming from?`, "I'd have to take that to finance. What should I tell them?"];
+    return { reply: lines[(p.turns - 1) % lines.length], deal: false };
+  }
+  const remaining = hiddenMax - p.currentOffer;
+  if (remaining < 1500 || a.asked <= hiddenMax) {
+    p.currentOffer = Math.max(p.currentOffer, Math.min(a.asked, hiddenMax));
+    return { reply: `You've made a really good case. I can do ${fmt(p.currentOffer)}, and I'm so glad we got here.`, deal: true };
+  }
+  const step = Math.round((remaining * (p.difficulty === "tough" ? 0.4 : 0.6)) / 500) * 500 || 500;
+  p.currentOffer += step;
+  return { reply: `That's fair, and the results speak for themselves. I can stretch to ${fmt(p.currentOffer)}. That's already more than I planned.`, deal: false };
+}
+
+// ---------- Voice: how you sounded ----------
+const FILLER_RE = /\b(um+|uh+|erm?|like|you know|i mean|kind of|sort of)\b/gi;
+// samples: [{ t: ms since recording started, rms }]
+function analyzeDelivery(samples, transcript, stoppedAt) {
+  const words = (String(transcript).trim().match(/\S+/g) || []).length;
+  const fillers = (String(transcript).match(FILLER_RE) || []).length;
+  if (!samples.length) return null;
+  const head = samples.filter((s) => s.t < 300);
+  const floor = head.length ? head.reduce((a, s) => a + s.rms, 0) / head.length : Math.min(...samples.map((s) => s.rms));
+  const thr = Math.max(0.012, floor * 2.5);
+  const voiced = samples.filter((s) => s.rms > thr);
+  if (voiced.length < 2) return { words, fillers, wpm: 0, startDelay: stoppedAt / 1000, longestPause: 0, trailsOff: false };
+  const first = voiced[0].t, last = voiced[voiced.length - 1].t;
+  const dur = Math.max(0.5, (last - first) / 1000);
+  let longestPause = 0;
+  for (let i = 1; i < voiced.length; i++) longestPause = Math.max(longestPause, (voiced[i].t - voiced[i - 1].t) / 1000);
+  const cut = first + (last - first) * 0.75;
+  const early = voiced.filter((s) => s.t <= cut), late = voiced.filter((s) => s.t > cut);
+  const mean = (a) => a.reduce((x, s) => x + s.rms, 0) / a.length;
+  const trailsOff = early.length >= 3 && late.length >= 3 && mean(late) < mean(early) * 0.6;
+  return { words, fillers, wpm: Math.round(words / (dur / 60)), startDelay: first / 1000, longestPause, trailsOff };
+}
+
+function renderSound(d) {
+  const box = $("#p-sound");
+  if (!d) { box.hidden = true; return; }
+  const paceOk = d.wpm >= 120 && d.wpm <= 165;
+  const paceTxt = d.wpm > 165 ? "A bit fast. Slow down on your number." : d.wpm < 120 ? "A bit slow. Keep it moving." : "Steady, confident pace.";
+  const pauseMax = Math.max(d.startDelay, d.longestPause);
+  const rows = [
+    [ICON.pace, "Pace", `${d.wpm} wpm`, paceOk, paceTxt],
+    [ICON.filler, "Filler words", String(d.fillers), d.fillers <= 1, d.fillers <= 1 ? "Clean delivery." : "Pause silently instead of filling."],
+    [ICON.pause, "Pauses", `${pauseMax.toFixed(1)}s`, pauseMax <= 1.5, pauseMax <= 1.5 ? "No long hesitations." : "A long hesitation can read as doubt."],
+    [ICON.volume, "Volume", d.trailsOff ? "Trails off" : "Steady", !d.trailsOff, d.trailsOff ? "Keep your voice up through the number." : "You finished strong."],
+  ];
+  box.innerHTML = `<h4>How you sounded</h4>` + rows.map(([ic, k, v, ok, tip]) =>
+    `<div class="srow" title="${esc(tip)}">${ic}<span class="k">${k}<br><span class="fine">${esc(tip)}</span></span><span class="v">${esc(v)}</span><span class="st ${ok ? "" : "watch"}"></span></div>`).join("");
+  box.hidden = false;
+}
+
+const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
+const mic = { rec: null, stream: null, ctx: null, timer: null, samples: [], start: 0, finalText: "", active: false, last: null, noticed: false };
+if (!SR || !navigator.mediaDevices?.getUserMedia) $("#p-mic").hidden = true;
+
+function setMicUI(on) {
+  const b = $("#p-mic");
+  b.classList.toggle("listening", on);
+  b.innerHTML = on ? ICON.stop : ICON.mic;
+  b.setAttribute("aria-label", on ? "Stop and send" : "Speak your reply");
+  $("#p-micstatus").textContent = on ? "Listening… tap to send" : "";
+}
+
+async function startMic() {
+  const p = state.practice;
+  if (p.busy || p.done || mic.active) return;
+  if (!mic.noticed) { toast("Voice is transcribed by your browser's speech service."); mic.noticed = true; }
+  try { mic.stream = await navigator.mediaDevices.getUserMedia({ audio: true }); }
+  catch { toast("Microphone access was blocked. You can still type."); return; }
+  mic.ctx = new (window.AudioContext || window.webkitAudioContext)();
+  const an = mic.ctx.createAnalyser(); an.fftSize = 1024;
+  mic.ctx.createMediaStreamSource(mic.stream).connect(an);
+  const buf = new Float32Array(an.fftSize);
+  mic.samples = []; mic.start = performance.now(); mic.finalText = "";
+  mic.timer = setInterval(() => {
+    an.getFloatTimeDomainData(buf); let s = 0; for (const v of buf) s += v * v;
+    mic.samples.push({ t: performance.now() - mic.start, rms: Math.sqrt(s / buf.length) });
+  }, 50);
+  mic.rec = new SR(); mic.rec.lang = "en-US"; mic.rec.continuous = true; mic.rec.interimResults = true;
+  mic.rec.onresult = (ev) => {
+    let interim = "";
+    for (let i = ev.resultIndex; i < ev.results.length; i++) {
+      const r = ev.results[i];
+      if (r.isFinal) mic.finalText += r[0].transcript + " "; else interim += r[0].transcript;
+    }
+    $("#p-input").value = (mic.finalText + interim).trim();
+  };
+  mic.rec.onerror = (e) => { if (e.error === "not-allowed" || e.error === "service-not-allowed") toast("Voice isn't available here. You can still type."); };
+  mic.rec.onend = () => { if (mic.active) finishMic(true); };
+  mic.active = true; setMicUI(true);
+  try { mic.rec.start(); } catch { finishMic(false); }
+}
+
+function stopMic() {
+  if (!mic.active) return;
+  $("#p-micstatus").textContent = "Processing…";
+  try { mic.rec.stop(); } catch {}
+  setTimeout(() => { if (mic.active) finishMic(true); }, 1500);
+}
+
+function finishMic(send) {
+  if (!mic.active) return;
+  mic.active = false;
+  const stoppedAt = performance.now() - mic.start;
+  clearInterval(mic.timer);
+  mic.stream?.getTracks().forEach((t) => t.stop());
+  mic.ctx?.close().catch(() => {});
+  setMicUI(false);
+  const text = $("#p-input").value.trim();
+  if (!send) return;
+  if (!text) { $("#p-micstatus").textContent = "Didn't catch that. Try again or type."; return; }
+  mic.last = analyzeDelivery(mic.samples, text, stoppedAt);
+  $("#p-form").requestSubmit();
+}
+$("#p-mic").addEventListener("click", () => (mic.active ? stopMic() : startMic()));
+
+// ---------- Call UI ----------
+function addLine(who, html) {
+  const d = document.createElement("div");
+  d.className = "line " + who;
+  d.innerHTML = who === "mgr"
+    ? `<div class="avatar sm" aria-hidden="true">${ICON.user}</div><div class="bubble">${html}</div>`
+    : `<div class="bubble">${html}</div><div class="tags"></div>`;
+  $("#p-chat").appendChild(d); $("#p-chat").scrollTop = $("#p-chat").scrollHeight;
+  return d;
+}
+
+function startTimer() {
+  const p = state.practice;
+  if (p.timerId) return;
+  p.callStart = Date.now(); $("#p-timer").classList.add("on");
+  p.timerId = setInterval(() => {
+    const s = Math.floor((Date.now() - p.callStart) / 1000);
+    $("#p-time").textContent = `${String(Math.floor(s / 60)).padStart(2, "0")}:${String(s % 60).padStart(2, "0")}`;
+  }, 1000);
+}
+function stopTimer() { const p = state.practice; clearInterval(p.timerId); p.timerId = null; $("#p-timer").classList.remove("on"); }
+
+function resetPractice() {
+  if (mic.active) finishMic(false);
+  const e = effective(); const p = state.practice;
+  stopTimer();
+  Object.assign(p, { history: [], currentOffer: e.offer, turns: 0, scores: [], points: [], best: null, turnLog: [], done: false, finalOffer: null, busy: false });
+  const raise = state.scenario === "raise";
+  $("#m-name").textContent = raise ? "Your manager" : "Hiring manager";
+  $("#m-role").textContent = e.role === "this role" || e.role === "my current role" ? (raise ? "1:1 meeting" : "Job offer call") : e.role;
+  const roleTxt = e.role === "this role" ? "" : ` for the ${e.role} role`;
+  p.opening = raise
+    ? "Come on in. You said you wanted to talk about something?"
+    : `Hi! The whole team really enjoyed meeting you, so I'm glad to be making this call. We'd like to offer you ${fmt(e.offer)}${roleTxt}. How are you feeling about it?`;
+  $("#p-chat").innerHTML = ""; $("#p-end").innerHTML = "";
+  addLine("mgr", esc(p.opening));
+  $("#p-offer").textContent = fmt(p.currentOffer);
+  $("#p-time").textContent = "00:00";
+  $("#p-score").textContent = "–"; $("#p-label").textContent = "Aim for the top-right."; drawPlot();
+  $("#p-turns").textContent = "Turn 0 of 5";
+  $("#p-feedback").innerHTML = ""; renderSound(null);
+  $("#p-micstatus").textContent = "";
+  $("#p-input").disabled = false; $("#p-send").disabled = false; $("#p-mic").disabled = false;
+}
+
+function drawPlot() {
+  const wf = $("#wf"); wf.querySelectorAll(".pt").forEach((x) => x.remove());
+  state.practice.points.forEach((pt, i, arr) => {
+    const d = document.createElement("div");
+    d.className = "pt" + (i < arr.length - 1 ? " old" : "");
+    d.style.left = pt.f + "%"; d.style.bottom = pt.w + "%";
+    wf.appendChild(d);
+  });
+}
+
+$$("[data-diff]").forEach((b) => b.addEventListener("click", () => {
+  state.practice.difficulty = b.dataset.diff;
+  $$("[data-diff]").forEach((x) => x.setAttribute("aria-pressed", String(x === b)));
+  resetPractice();
+}));
+$("#p-restart").addEventListener("click", resetPractice);
+$("#p-endcall").addEventListener("click", () => {
+  const p = state.practice;
+  if (p.done) return;
+  if (!p.turns) { toast("Reply at least once before ending."); return; }
+  endPractice(false);
+});
+$("#p-input").addEventListener("keydown", (ev) => { if (ev.key === "Enter" && !ev.shiftKey) { ev.preventDefault(); $("#p-form").requestSubmit(); } });
+
+const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
+
+$("#p-form").addEventListener("submit", async (ev) => {
+  ev.preventDefault();
+  const p = state.practice; const text = $("#p-input").value.trim();
+  if (!text || p.busy || p.done || mic.active) return;
+  const delivery = mic.last; mic.last = null;
+  p.busy = true; $("#p-send").disabled = true; $("#p-mic").disabled = true; $("#p-input").value = "";
+  startTimer();
+  const a = analyze(text);
+  collapseTryCards();
+  const myLine = addLine("me", highlight(text, a.hedges));
+  p.history.push({ role: "user", text });
+  p.turns++;
+  const typing = document.createElement("div"); typing.className = "line mgr";
+  typing.innerHTML = `<div class="avatar sm" aria-hidden="true">${ICON.user}</div><div class="dots" aria-label="Typing"><i></i><i></i><i></i></div>`;
+  $("#p-chat").appendChild(typing); $("#p-chat").scrollTop = $("#p-chat").scrollHeight;
+  const t0 = performance.now();
+
+  const e = effective();
+  let reply, deal, fb = null;
+  const data = state.aiAvailable ? await api("/api/practice", {
+    context: { scenario: state.scenario, role: e.role, offer: e.offer, counter: e.counter, walkAway: e.walkAway, wins: e.wins, difficulty: p.difficulty, opening: p.opening },
+    history: p.history,
+  }) : { fallback: true };
+
+  if (data && !data.fallback && data.manager_reply) {
+    reply = data.manager_reply; deal = !!data.deal_reached; fb = data.feedback;
+    if (Number.isFinite(data.current_offer) && data.current_offer >= p.currentOffer * 0.9) p.currentOffer = Math.max(p.currentOffer, data.current_offer);
+  } else {
+    if (state.aiAvailable) { state.aiAvailable = false; setStatus(false); }
+    const s = scriptedManager(a); reply = s.reply; deal = s.deal;
+  }
+
+  // Score this reply and tag it right away
+  const blend = (ai, rule) => Number.isFinite(ai) ? clamp(clamp(ai) * 0.6 + rule * 0.4) : rule;
+  const w = blend(fb?.warmth, a.warmth), f = blend(fb?.firmness, a.firmness);
+  const score = Number.isFinite(fb?.score) ? clamp(clamp(fb.score) * 0.5 + overall(w, f) * 0.5) : overall(w, f);
+  const tags = [`<span class="tag ${w >= 50 ? "good" : "watch"}">Warm ${w}</span>`, `<span class="tag ${f >= 50 ? "good" : "watch"}">Firm ${f}</span>`];
+  if (delivery) {
+    tags.push(`<span class="tag">${ICON.pace}${delivery.wpm} wpm</span>`);
+    tags.push(`<span class="tag">${ICON.filler}${delivery.fillers} filler${delivery.fillers === 1 ? "" : "s"}</span>`);
+  }
+  myLine.querySelector(".tags").innerHTML = tags.join("");
+
+  // Natural pacing: the reply appears after a human-feeling delay
+  const want = Math.min(2600, Math.max(1000, 700 + 14 * reply.length));
+  await sleep(Math.max(0, want - (performance.now() - t0)));
+  typing.remove();
+  addLine("mgr", esc(reply));
+  p.history.push({ role: "manager", text: reply });
+  $("#p-offer").textContent = fmt(p.currentOffer);
+
+  p.points.push({ w, f }); p.scores.push(score);
+  if (!p.best || score > p.best.score) p.best = { score, text };
+  p.turnLog.push({ text, score, w, f, hedges: a.hedges.map((h) => coreHedge(h.word)), asked: a.asked, delivery });
+  addTryCard(myLine, score, fb?.stronger_rewrite || strongRewrite());
+  $("#p-score").textContent = score; drawPlot();
+  $("#p-label").innerHTML = `<b>${esc(quadrantLabel(w, f))}</b> · Warmth ${w}, Firmness ${f}`;
+  $("#p-turns").textContent = `Turn ${p.turns} of 5`;
+  renderFeedback(a, fb, w, f);
+  if (delivery) renderSound(delivery);
+
+  if (deal || p.turns >= 5) endPractice(deal);
+  p.busy = false;
+  $("#p-send").disabled = p.done; $("#p-mic").disabled = p.done;
+  if (!p.done) $("#p-input").focus({ preventScroll: true });
+});
+
+function quadrantLabel(w, f) {
+  if (w >= 50 && f >= 50) return "Warm & firm";
+  if (w >= 50) return "Warm but vague";
+  if (f >= 50) return "Firm but cold";
+  return "Hesitant";
+}
+
+// Inline "Try saying it like this" under the reply
+function addTryCard(line, score, rewrite) {
+  const card = document.createElement("div");
+  if (score >= 80 || !rewrite) {
+    card.className = "try-card strong";
+    card.textContent = "That was strong. Keep it up.";
+  } else {
+    card.className = "try-card";
+    card.innerHTML = `<div class="k">Try saying it like this</div><p>${esc(rewrite)}</p><button type="button" class="btn-ghost btn-sm">Use this</button>`;
+    card.querySelector("button").addEventListener("click", () => {
+      if (state.practice.done) return;
+      $("#p-input").value = rewrite; $("#p-input").focus({ preventScroll: true });
+    });
+  }
+  line.appendChild(card);
+  $("#p-chat").scrollTop = $("#p-chat").scrollHeight;
+}
+function collapseTryCards() {
+  $$("#p-chat .try-card:not(.strong)").forEach((card) => {
+    if (card.dataset.collapsed) return;
+    card.dataset.collapsed = "1"; card.hidden = true;
+    const t = document.createElement("button");
+    t.type = "button"; t.className = "try-toggle"; t.textContent = "Stronger version";
+    t.addEventListener("click", () => { card.hidden = !card.hidden; t.textContent = card.hidden ? "Stronger version" : "Hide"; });
+    card.before(t);
+  });
+  $$("#p-chat .try-card.strong").forEach((c) => c.remove());
+}
+
+function renderFeedback(a, fb, w, f) {
+  const fix = fb?.fix || a.warning || (!a.value ? "Mention one specific win." : !a.relational ? "Add a reason that shows you care, like \"I want to start fully committed.\"" : "Keep it this warm and firm.");
+  const strength = fb?.strength || (a.value ? "You backed the ask with value." : a.gratitude ? "Your appreciation kept it warm." : a.asked ? "You named a number. That's the hardest part." : "You practiced. That's how confidence grows.");
+  let html = `<div class="fb-list"><div class="fb-item"><b>Try next</b>${esc(fix)}</div><div class="fb-item"><b>What worked</b>${esc(strength)}</div>`;
+  if (a.hedges.length) {
+    html += `<div class="fb-item"><b>Softening words</b><div class="hedge-chips">${a.hedges.map((h) => `<span class="hedge-chip">"${esc(h.word)}"</span>`).join("")}</div>`
+      + [...new Set(a.hedges.map((h) => h.tip))].map((t) => `<div class="hedge-tip">${esc(t)}</div>`).join("") + `</div>`;
+  }
+  $("#p-feedback").innerHTML = html + `</div>`;
+}
+
+// Group hedge phrases by their core word ("I was just hoping" -> "just")
+function coreHedge(phrase) {
+  const t = phrase.toLowerCase();
+  if (/\bjust\b/.test(t)) return "just";
+  if (/sorry|apologi/.test(t)) return "sorry";
+  if (/i think|i feel like|i guess/.test(t)) return "I think";
+  if (/maybe|perhaps|possibly/.test(t)) return "maybe";
+  if (/hoping|wondering/.test(t)) return "I was hoping";
+  if (/kind of|sort of|a little|a bit/.test(t)) return "a bit";
+  if (/make sense|is that (ok|okay|alright)/.test(t)) return "does that make sense";
+  if (/if (it'?s )?possible|if that'?s okay|if you don'?t mind/.test(t)) return "if possible";
+  if (/if not/.test(t)) return "no worries if not";
+  return t;
+}
+
+// The one habit to work on, from the whole conversation
+function pickHabit(log) {
+  if (!log.length) return "";
+  const counts = {};
+  log.forEach((t) => t.hedges.forEach((h) => (counts[h] = (counts[h] || 0) + 1)));
+  const top = Object.entries(counts).sort((x, y) => y[1] - x[1])[0];
+  if (top && top[1] >= 2) return `You said "${top[0]}" ${top[1]} times. Drop it and let your number stand on its own.`;
+  if (top) return `Watch for "${top[0]}". It softens your ask.`;
+  if (!log.some((t) => t.asked)) return "Name a specific number. Without one, there's nothing to say yes to.";
+  const avg = (k) => log.reduce((s, t) => s + t[k], 0) / log.length;
+  if (avg("f") < 50) return "Back your number with a specific win, like a result with a number in it.";
+  if (avg("w") < 50) return "Open with appreciation and a reason that shows you care about the team.";
+  if (log.some((t) => t.delivery && t.delivery.wpm > 165)) return "Slow down when you say your number. Let it land.";
+  return "Keep doing exactly this. You were warm and firm.";
+}
+
+function endPractice(deal) {
+  const p = state.practice; const e = effective();
+  if (mic.active) finishMic(false);
+  stopTimer(); collapseTryCards();
+  p.done = true; p.finalOffer = p.currentOffer;
+  $("#p-input").disabled = true; $("#p-send").disabled = true; $("#p-mic").disabled = true;
+  const gain = p.finalOffer - e.offer;
+  const avg = Math.round(p.scores.reduce((s, x) => s + x, 0) / p.scores.length);
+  const habit = pickHabit(p.turnLog);
+  state.results.self = { gain, avg, final: p.finalOffer, best: p.best?.text, habit };
+  const trend = p.scores.map((sc) => `<div><span>${sc}</span><i style="height:${Math.max(6, sc * 0.6)}%"></i></div>`).join("");
+  $("#p-end").innerHTML = `<div class="recap">
+      <div class="recap-top">
+        <div class="fine" style="color:var(--text)">${deal ? "Deal reached" : "Conversation ended"}</div>
+        <div class="big-number">${gain > 0 ? "+" + fmt(gain) : fmt(0)}</div>
+        <div class="fine">${gain > 0 ? `From ${fmt(e.offer)} to ${fmt(p.finalOffer)}` : "No movement this time"} · average score ${avg}/100</div>
+      </div>
+      <div class="label2">Your scores</div>
+      <div class="trend" aria-label="Score for each reply">${trend}</div>
+      ${p.best ? `<div class="label2">Your best line</div><blockquote>"${esc(p.best.text)}"</blockquote>` : ""}
+      <div class="label2">One habit to work on</div>
+      <div class="habit">${esc(habit)}</div>
+      <div class="recap-actions">
+        <button class="btn-primary btn-sm" type="button" onclick="go(4)">See my plan →</button>
+        <button class="btn-ghost btn-sm" type="button" onclick="resetPractice()">Try again</button>
+      </div></div>`;
+  $("#p-end").scrollIntoView({ behavior: "smooth", block: "nearest" });
+}
+
+function setStatus(live) { $("#p-offline").hidden = live; }
+
+// ================= 4. Game plan =================
+const CHECKS = ["Researched my market range", "Wrote down my counter and walk-away", "Practiced out loud, warm and firm", "Picked a good moment"];
+
+// The four beats of the conversation, one line each
+function cueBeats(e) {
+  const win = e.wins[0];
+  return state.scenario === "raise"
+    ? [["Thank", "Thank them for their support this year."], ["Value", `Share: ${win}.`], ["Number", e.counter], ["Close", "Ask: \"What would it take to make this happen this cycle?\""]]
+    : [["Thank", "Thank them and say you want to start fully committed."], ["Value", `Mention: ${win}.`], ["Number", e.counter], ["Close", "Ask: \"How can we make that work together?\""]];
+}
+function pocketReplies(e) {
+  const pb = pushbacks(e);
+  return [pb.common[0], pb.common[1], pb.women[0]];
+}
+
+function renderPlan() {
+  const e = effective(); const me = state.results.self;
+  const extras = state.extras.length ? state.extras : ["Sign-on bonus", "6-month review"];
+  const numberLine = state.scenario === "raise" ? "Ask to adjust to" : "Ask for";
+  $("#plan-card").innerHTML = `
+    <h3 class="serif">${state.role ? esc(state.role) : (state.scenario === "raise" ? "My raise" : "My offer")}</h3>
+    <div class="plan-nums">
+      <div><span>${state.scenario === "raise" ? "Current" : "Offer"}</span><strong>${fmt(e.offer)}</strong></div>
+      <div class="hi"><span>Counter</span><strong>${fmt(e.counter)}</strong></div>
+      <div><span>Walk-away</span><strong>${fmt(e.walkAway)}</strong></div>
+    </div>
+    ${me ? `<p class="fine">In practice you reached ${fmt(me.final)} (${me.gain > 0 ? "+" + fmt(me.gain) : "no change"}).</p>` : ""}
+    ${me?.habit ? `<div class="label">Habit to work on</div><p>${esc(me.habit)}</p>` : ""}
+    <div class="label">What I'll say</div>
+    <ol class="cue">${cueBeats(e).map(([k, v]) => {
+      const ic = `<span class="ico sm">${{ Thank: SOLID.heart, Value: SOLID.star, Number: SOLID.tag, Close: SOLID.chat }[k]}</span>`;
+      return k === "Number"
+        ? `<li>${ic}<span><b>${k}</b>${numberLine} <span class="num">${fmt(v)}</span></span></li>`
+        : `<li>${ic}<span><b>${k}</b>${esc(v)}</span></li>`;
+    }).join("")}</ol>
+    <details class="more"><summary>Show full script</summary><div class="script">${rich(polished || scripts(e).call)}</div></details>
+    <div class="label">My value</div>
+    <ul>${e.wins.map((w) => `<li>${esc(w)}</li>`).join("")}</ul>
+    <div class="label">If base is stuck, ask for</div>
+    <p>${esc(extras.join(" · "))}</p>
+    <div class="label">Before I walk in</div>
+    <div class="checklist">
+      ${CHECKS.map((c, i) => `<label><input type="checkbox" id="chk${i}"> ${esc(c)}</label>`).join("")}
+    </div>
+    <p class="affirm">You've practiced this. Now go ask.</p>`;
+  $("#plan-pocket").innerHTML = `<div class="side-head"><span class="ico sm">${SOLID.speech}</span><h3 class="serif side">If they push back</h3></div>
+    <p class="fine" style="margin-bottom:10px">Your answers, ready to go.</p>
+    ${pocketReplies(e).map(([q, a]) => `<div class="pocket"><strong>${esc(q)}</strong><p>${esc(a)}</p></div>`).join("")}`;
+  $("#plan-email").href = "mailto:?subject=" + encodeURIComponent("My negotiation plan") + "&body=" + encodeURIComponent(planText());
+}
+
+// Clean plain-text version for copying and emailing
+function planText() {
+  const e = effective(); const me = state.results.self;
+  const extras = state.extras.length ? state.extras : ["Sign-on bonus", "6-month review"];
+  const L = [];
+  L.push(`MY NEGOTIATION PLAN${state.role ? " – " + state.role : ""}`, "");
+  L.push(`${state.scenario === "raise" ? "Current" : "Offer"}: ${fmt(e.offer)}`, `Counter: ${fmt(e.counter)}`, `Walk-away: ${fmt(e.walkAway)}`, "");
+  if (me?.habit) L.push("HABIT TO WORK ON", me.habit, "");
+  L.push("WHAT I'LL SAY");
+  cueBeats(e).forEach(([k, v], i) => L.push(`${i + 1}. ${k}: ${k === "Number" ? (state.scenario === "raise" ? "Ask to adjust to " : "Ask for ") + fmt(v) : v}`));
+  L.push("", "MY VALUE", ...e.wins.map((w) => "- " + w), "");
+  L.push("IF BASE IS STUCK, ASK FOR", extras.join(" · "), "");
+  L.push("IF THEY PUSH BACK");
+  pocketReplies(e).forEach(([q, a]) => L.push(q, "→ " + a, ""));
+  L.push("BEFORE I WALK IN", ...CHECKS.map((c) => "[ ] " + c));
+  return L.join("\n");
+}
+$("#plan-copy").addEventListener("click", () => copyText(planText()));
+
+// ================= Demo pre-fill =================
+$("#demoBtn").addEventListener("click", () => {
+  state.scenario = "offer"; polished = null; scriptFmt = "call"; currentTab = "script";
+  $$("[data-scenario]").forEach((x) => x.setAttribute("aria-pressed", String(x.dataset.scenario === "offer")));
+  $("#b-offer-label").textContent = "Offer you received";
+  $("#b-norange").checked = false; $("#range-fields").hidden = false; $("#range-skip-note").hidden = true;
+  $("#c-offer").value = fmtNum(85000); $("#c-ask").value = 7; calc();
+  $("#b-role").value = "Senior Product Designer";
+  $("#b-offer").value = fmtNum(85000); $("#b-offer").dataset.touched = "1";
+  $("#b-low").value = fmtNum(82000); $("#b-high").value = fmtNum(98000);
+  $("#b-target").value = fmtNum(92000); $("#b-walk").value = fmtNum(88000);
+  $("#b-target").dataset.touched = "1"; $("#b-walk").dataset.touched = "1";
+  $("#b-wins").value = "Led a checkout redesign that lifted conversion 18%\nBuilt a design system now used by 6 product teams\nMentored 4 junior designers";
+  $$("#b-extras input").forEach((i) => (i.checked = ["Sign-on bonus", "Remote / flexible", "6-month review"].includes(i.value)));
+  state.results = { self: null };
+  readBuild(); resetPractice();
+  toast("Example loaded");
+  go(1);
+});
+
+// ================= Save progress (survives a refresh) =================
+const SAVE_KEY = "askforit-v1";
+const SAVE_FIELDS = ["c-offer", "c-ask", "c-raise", "c-years", "b-role", "b-offer", "b-low", "b-high", "b-target", "b-walk", "b-wins"];
+let saveTimer = null, saveBlocked = false;
+function saveState() {
+  if (saveBlocked) return;
+  try {
+    const d = { v: 1, fields: {}, touched: {}, scenario: state.scenario, norange: $("#b-norange").checked,
+      extras: $$("#b-extras input:checked").map((i) => i.value), step: state.step, part: state.part,
+      results: state.results, polished, difficulty: state.practice.difficulty };
+    SAVE_FIELDS.forEach((id) => { const el = $("#" + id); d.fields[id] = el.value; if (el.dataset.touched) d.touched[id] = 1; });
+    localStorage.setItem(SAVE_KEY, JSON.stringify(d));
+  } catch {}
+}
+function queueSave() { clearTimeout(saveTimer); saveTimer = setTimeout(saveState, 250); }
+function restoreState() {
+  let d;
+  try { d = JSON.parse(localStorage.getItem(SAVE_KEY) || "null"); } catch { return null; }
+  if (!d || d.v !== 1) return null;
+  SAVE_FIELDS.forEach((id) => { const el = $("#" + id); if (d.fields?.[id] !== undefined) el.value = d.fields[id]; if (d.touched?.[id]) el.dataset.touched = "1"; });
+  $$("#b-extras input").forEach((i) => (i.checked = (d.extras || []).includes(i.value)));
+  state.scenario = d.scenario === "raise" ? "raise" : "offer";
+  $$("[data-scenario]").forEach((x) => x.setAttribute("aria-pressed", String(x.dataset.scenario === state.scenario)));
+  $("#b-offer-label").textContent = state.scenario === "raise" ? "Your current salary" : "Offer you received";
+  $("#b-norange").checked = !!d.norange; $("#range-fields").hidden = !!d.norange; $("#range-skip-note").hidden = !d.norange;
+  if (d.results) state.results = d.results;
+  if (d.polished) polished = d.polished;
+  if (DIFF_FRAC[d.difficulty]) {
+    state.practice.difficulty = d.difficulty;
+    $$("[data-diff]").forEach((x) => x.setAttribute("aria-pressed", String(x.dataset.diff === d.difficulty)));
+  }
+  return { step: Number(d.step) || 0, part: Number(d.part) || 0 };
+}
+document.addEventListener("input", queueSave);
+document.addEventListener("change", queueSave);
+document.addEventListener("click", queueSave);
+$("#startOver").addEventListener("click", (ev) => {
+  ev.stopPropagation(); saveBlocked = true; clearTimeout(saveTimer);
+  try { localStorage.removeItem(SAVE_KEY); } catch {}
+  location.href = location.pathname;
+});
+
+// ================= Init =================
+calc();
+const restored = restoreState();
+if (restored) { calc(); readBuild(); go(restored.step, restored.part); }
+else { $("#b-offer").value = $("#c-offer").value; readBuild(); go(0); }
+fetch("/api/health").then((r) => r.json()).then((d) => {
+  state.aiAvailable = !!d.ai;
+  $("#b-phrase").hidden = !state.aiAvailable;
+  setStatus(state.aiAvailable, state.aiAvailable ? "● Live" : "Offline mode");
+}).catch(() => setStatus(false, "Offline mode"));
+</script>
+</body>
+</html>
